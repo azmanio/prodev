@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JenisLayanan;
 use App\Models\Layanan;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class LayananController extends Controller
      */
     public function index()
     {
-        //
+        $data = Layanan::all();
+        return view("pages.admin.layanan.index", compact("data"));
     }
 
     /**
@@ -20,7 +22,8 @@ class LayananController extends Controller
      */
     public function create()
     {
-        //
+        $jenis_layanan = JenisLayanan::all();
+        return view("pages.admin.layanan.create", compact("jenis_layanan"));
     }
 
     /**
@@ -28,7 +31,14 @@ class LayananController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "jenis_layanan_id"=>"required|exists:jenis_layanans,id",
+            "nama"=>"required|string",
+            "deskripsi"=>"required|string"
+        ]);
+
+        Layanan::create($request->all());
+        return redirect()->route("layanan.index");
     }
 
     /**
@@ -44,7 +54,8 @@ class LayananController extends Controller
      */
     public function edit(Layanan $layanan)
     {
-        //
+        $jenis_layanan = JenisLayanan::all();
+        return view("pages.admin.layanan.update", compact("layanan","jenis_layanan"));
     }
 
     /**
@@ -52,7 +63,14 @@ class LayananController extends Controller
      */
     public function update(Request $request, Layanan $layanan)
     {
-        //
+        $request->validate([
+            "jenis_layanan_id" => "required|exists:jenis_layanans,id",
+            "nama" => "required|string",
+            "deskripsi" => "required|string"
+        ]);
+
+        $layanan->update($request->all());
+        return redirect()->route("layanan.index");
     }
 
     /**
@@ -60,6 +78,14 @@ class LayananController extends Controller
      */
     public function destroy(Layanan $layanan)
     {
-        //
+        $layanan->delete();
+        return redirect()->route("layanan.index");
+    }
+
+    public function status(Layanan $layanan)
+    {
+        $layanan->status = !$layanan->status;
+        $layanan->save();
+        return redirect()->route("layanan.index");
     }
 }

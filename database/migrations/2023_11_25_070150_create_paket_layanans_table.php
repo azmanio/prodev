@@ -18,7 +18,7 @@ return new class extends Migration
             $table->bigInteger('harga');
             $table->string('deskripsi');
             $table->string('fitur');
-            $table->boolean('status');
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }
