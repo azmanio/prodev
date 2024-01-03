@@ -6,12 +6,12 @@
 
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a class="nav-link scrollto" href="#hero">Home</a></li>
-                <li><a class="nav-link scrollto" href="#about">About</a></li>
-                <li><a class="nav-link scrollto" href="#services">Services</a></li>
-                <li><a class="nav-link scrollto" href="#portfolio">Portfolio</a></li>
-                <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-                <li><a class="getstarted scrollto" href="#about">Get Started</a></li>
+                <li><a class="nav-link scrollto" href="#hero">Beranda</a></li>
+                <li><a class="nav-link scrollto" href="#about">Tentang</a></li>
+                <li><a class="nav-link scrollto" href="#services">Layanan</a></li>
+                <li><a class="nav-link scrollto" href="#portfolio">Portofolio</a></li>
+                <li><a class="nav-link scrollto" href="#contact">Kontak</a></li>
+                <li><a class="getstarted scrollto" href="{{ route('auth.login') }}">Masuk</a></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->

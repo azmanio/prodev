@@ -20,6 +20,7 @@
                     <thead>
                         <tr>
                             <th scope="col">No</th>
+                            <th scope="col">Icon</th>
                             <th scope="col">Nama</th>
                             <th scope="col">Deskripsi</th>
                             <th scope="col" class="text-center">Aksi</th>
@@ -29,6 +30,7 @@
                         @foreach ($data as $index => $item)
                             <tr>
                                 <td>{{ $index + 1 }}</td>
+                                <td>{{ $item->icon_class }}</td>
                                 <td>{{ $item->nama }}</td>
                                 <td>{{ $item->deskripsi }}</td>
                                 <td class="d-flex flex-column text-center">

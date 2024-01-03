@@ -10,6 +10,6 @@ class HomeController extends Controller
     public function show(Request $request)
     {
         $jenis_layanan = JenisLayanan::all();
-        return view('pages.home', compact('jenis_layanan'));
+        return view('pages.home.app', compact('jenis_layanan'));
     }
 }

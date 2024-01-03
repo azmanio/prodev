@@ -17,7 +17,7 @@
                     <div class="mb-3">
                         <label for="jenis_layanan_id" class="form-label">Jenis Layanan</label>
                         <select name="jenis_layanan_id" id="jenis_layanan_id" class="form-control">
-                            <option value="" selected disabled>Pilih Jenis Layanan</option>
+                            <option value="" selected disabled>--Pilih Jenis Layanan--</option>
                             @foreach ($jenis_layanan as $item)
                                 <option value="{{ $item->id }}">{{ $item->nama }}</option>
                             @endforeach

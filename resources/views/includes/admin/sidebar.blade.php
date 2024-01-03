@@ -61,6 +61,12 @@
             <span>Paket Layanan</span>
         </a>
     </li>
+    <li class="nav-item @if (Route::currentRouteName() == 'paket-layanan.index') active @endif">
+        <a class="nav-link" href="{{ route('paket-layanan.index') }}">
+            <i class="fas fa-gift"></i>
+            <span>Order</span>
+        </a>
+    </li>
 
     <hr class="sidebar-divider d-none d-md-block">
 

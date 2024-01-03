@@ -7,7 +7,9 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <title>Prodev Media</title>
+    <title>
+        @yield('tittle', 'Beranda') - Prodev Media
+    </title>
 
     @include('includes.style')
 </head>
@@ -32,7 +34,7 @@
     @include('includes.footer')
 
     <div id="preloader"></div>
-    <a href="{{ route('home') }}" class="back-to-top d-flex align-items-center justify-content-center"><i
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>
 
     <!-- ===== Script ===== -->

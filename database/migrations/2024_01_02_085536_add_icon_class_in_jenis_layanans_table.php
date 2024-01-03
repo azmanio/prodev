@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('paket_layanans', function (Blueprint $table) {
-            $table->dropColumn('layanan_id');
+        Schema::table('jenis_layanans', function (Blueprint $table) {
+            $table->string('icon_class')->nullable();
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('paket_layanans', function (Blueprint $table) {
-            $table->integer('layanan_id');
+        Schema::table('jenis_layanans', function (Blueprint $table) {
+            $table->dropColumn('icon_class');
         });
     }
 };
