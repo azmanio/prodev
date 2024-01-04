@@ -150,7 +150,7 @@
                 <span class="mr-2 d-none d-lg-inline text-gray-600">Hi, {{ auth()->user()->nama }}! </span>
                 @if (auth()->user()->image_path)
                     <img src="/storage/{{ auth()->user()->image_path }}" alt="Foto"
-                        class="img-profile rounded-circle">
+                        class="img-profile rounded-circle" style="width: 30px; height: 30px">
                 @else
                     <img src="{{ asset('assets/img/user.png') }}" alt="Foto" class="img-profile rounded-circle">
                 @endif

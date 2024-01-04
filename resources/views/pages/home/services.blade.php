@@ -4,9 +4,8 @@
 
         <div class="section-title">
             <h2>Layanan</h2>
-            <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
-                consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia
-                fugiat sit in iste officiis commodi quidem hic quas.</p>
+            <p>Temukan Solusi Kreatif dan Inovatif untuk Setiap Kebutuhan Anda. Kami siap membantu mewujudkan visi Anda
+                melalui layanan yang tersedia. Bersama, mari kita bentuk jejak digital yang tak terlupakan!</p>
         </div>
 
         <div class="row">
