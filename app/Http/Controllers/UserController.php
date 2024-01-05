@@ -37,10 +37,10 @@ class UserController extends Controller
             'image_path' => 'nullable|image'
         ]);
 
-        if ($data['image_path']) {
+        if (@$data['image_path']) {
             $ext = $request->file('image_path')->getClientOriginalExtension();
             // save to storage
-            $data['image_path'] = $request->file('image_path')->storeAs('public/profile', time().Str::slug($request->nama) . '.' . $ext);
+            $data['image_path'] = $request->file('image_path')->storeAs('public/profile', time() . Str::slug($request->nama) . '.' . $ext);
             $data['image_path'] = str_replace('public/', '', $data['image_path']);
         }
 
@@ -80,7 +80,7 @@ class UserController extends Controller
         if (@$data['image_path']) {
             $ext = $request->file('image_path')->getClientOriginalExtension();
             // save to storage
-            $data['image_path'] = $request->file('image_path')->storeAs('public/profile', time().Str::slug($request->nama) . '.' . $ext);
+            $data['image_path'] = $request->file('image_path')->storeAs('public/profile', time() . Str::slug($request->nama) . '.' . $ext);
             $data['image_path'] = str_replace('public/', '', $data['image_path']);
         }
 
@@ -103,6 +103,11 @@ class UserController extends Controller
 
     public function status(User $user)
     {
+        if ($user->id == 1) {
+            return redirect()->route('admin.index')->withErrors([
+                'status' => 'Tidak dapat mengubah status Super Admin!',
+            ]);
+        }
         $user->status = !$user->status;
         $user->save();
         return redirect()->route('admin.index');

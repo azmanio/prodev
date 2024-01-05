@@ -1,4 +1,5 @@
-<header id="header" class="fixed-top @if (Route::currentRouteName() == 'auth.login' || Route::currentRouteName() == 'auth.register') header-inner-pages @endif">
+<header id="header" class="fixed-top
+@if (str_contains(Route::currentRouteName(), 'auth.')) header-inner-pages @endif">
     <div class="container d-flex align-items-center">
         <a href="{{ route('home') }}" class="logo me-auto">
             <img src="/assets/img/logo-prodev.png" alt="Logo Prodev" class="img-fluid">
@@ -24,7 +25,7 @@
                             @endif
                             <i class="m-0 bi bi-chevron-down"></i>
                         </a>
-                        <ul class="text-center">
+                        <ul>
                             <li>
                                 <a href="#">
                                     Profil Saya
@@ -46,7 +47,7 @@
                         </ul>
                     </li>
                 @else
-                    @if (Route::currentRouteName() == 'home')
+                    @if (Route::currentRouteName() == 'home' || Route::currentRouteName() == 'detail-service')
                         <li><a class="getstarted scrollto" href="{{ route('auth.login') }}">Masuk</a></li>
                     @elseif (Route::currentRouteName() == 'auth.login')
                         <li><a class="getstarted scrollto" href="{{ route('auth.register') }}">Daftar Sekarang</a></li>

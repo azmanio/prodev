@@ -4,9 +4,9 @@
 
         <div class="section-title">
             <h2>Pricing</h2>
-            <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
-                consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia
-                fugiat sit in iste officiis commodi quidem hic quas.</p>
+            <p>Kami menyajikan beragam paket harga yang dirancang untuk memenuhi kebutuhan klien kami dengan
+                fleksibilitas dan nilai tambah. Dengan layanan berkualitas tinggi dan harga yang transparan, temukan
+                paket yang sesuai untuk membawa visi kreatif Anda menjadi kenyataan.</p>
         </div>
 
         <div class="row">

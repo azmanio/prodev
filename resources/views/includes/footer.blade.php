@@ -7,7 +7,8 @@
                 <div class="col-lg-3 col-md-6 footer-contact">
                     <img src="{{ asset('assets/img/logo-prodev.png') }}" alt="CV. Prodev Media" style="width: 50%">
                     <p>
-                        <b>CV. Prodev Media</b> adalah perusahaan digital agensi yang bergerak dalam bidang IT dan media
+                        <b>CV. Prodev Media</b> adalah perusahaan digital agensi yang bergerak dalam bidang IT dan
+                        media
                         untuk
                         memenuhi kebutuhan visual identity untuk menaikkan branding komersil sebuah perusahaan, unit
                         usaha, instansi pemerintah, organisasi, umkm, swasta, dan lain-lain.
@@ -38,12 +39,13 @@
 
                 <div class="col-lg-3 col-md-6 footer-links">
                     <h4>Media Sosial Kami</h4>
-                    <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
+                    <p>Ikuti kami di sosial media untuk merasakan inspirasi, update proyek terkini, dan berinteraksi
+                        langsung dengan tim kreatif kami.</p>
                     <div class="social-links mt-3">
                         <a href="" class="twitter"><i class="bx bxl-twitter"></i></a>
                         <a href="" class="facebook"><i class="bx bxl-facebook"></i></a>
                         <a href="" class="instagram"><i class="bx bxl-instagram"></i></a>
-                        <a href="" class="google-plus"><i class="bx bxl-skype"></i></a>
+                        <a href="" class="google-plus"><i class="bx bxl-tiktok"></i></a>
                         <a href="" class="linkedin"><i class="bx bxl-linkedin"></i></a>
                     </div>
                 </div>
@@ -57,4 +59,5 @@
             &copy; Copyright {{ date('Y') }} <strong><span>CV. Prodev Media</span></strong>. All Rights Reserved
         </div>
     </div>
+
 </footer>

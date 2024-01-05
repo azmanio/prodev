@@ -9,21 +9,21 @@
         <div class="row content">
             <div class="col-lg-6">
                 <p>
-                    <strong>CV. Prodev Media</strong> merupakan sebuah perusahaan yang bergerak dalam bidang teknologi
+                    <strong style="color: #4682A9">CV. Prodev Media</strong> merupakan sebuah perusahaan yang bergerak
+                    dalam bidang teknologi
                     dan media sebagai
-                    solusi untuk mengembangkan bisnis dan memenuhi kebutuhan masyarakat dengan beberapa benefit yang
-                    didapat.
+                    solusi untuk mengembangkan bisnis dan memenuhi kebutuhan masyarakat.
                 </p>
                 <ul>
                     <li>
-                        <i class="ri-check-double-line"></i> Membangun identitas merek yang kuat dan mudah dikenali
+                        <i class="ri-check-double-line"></i> Desain dan Pengembangan Berkualitas Tinggi
                     </li>
                     <li>
-                        <i class="ri-check-double-line"></i> Meningkatkan efisiensi dan optimasi proses bisnis
+                        <i class="ri-check-double-line"></i> Pengerjaan Tepat Waktu dan Efisien
                     </li>
                     <li>
                         <i class="ri-check-double-line"></i>
-                        Memberikan pengalaman visual yang menarik bagi pelanggan
+                        Solusi yang Disesuaikan dengan Kebutuhan Anda
                     </li>
                 </ul>
             </div>

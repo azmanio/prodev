@@ -19,7 +19,7 @@ class AuthController extends Controller
     {
         $request->validate([
             'email' => ['required', 'email', 'unique:users,email'],
-            'password' => ['required', 'confirmed','min:8'],
+            'password' => ['required', 'confirmed', 'min:8'],
             'nama' => ['required', 'string'],
             'gender' => ['required', 'in:laki-laki,perempuan'],
             'telepon' => ['required', 'numeric'],
@@ -57,9 +57,15 @@ class AuthController extends Controller
         $credentials = $request->validate([
             'email' => ['required', 'email', 'exists:users,email'],
             'password' => ['required']
-        ],[
-            'email.exists'=>'Email belum terdaftar.'
+        ], [
+            'email.exists' => 'Email belum terdaftar.'
         ]);
+
+        if (!User::where('email', $credentials['email'])->where('status', true)->first()) {
+            return back()->withErrors([
+                'email' => 'Akun Diblokir oleh Admin!',
+            ])->onlyInput('email');
+        }
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
@@ -79,6 +85,6 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         Auth::logout();
-        return redirect()->route('dashboard');
+        return redirect()->route('home');
     }
 }

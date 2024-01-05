@@ -104,13 +104,13 @@ class CustomerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Customer $customer)
+    public function destroy(User $customer)
     {
         $customer->delete();
         return redirect()->route('customer.index');
     }
 
-    public function status(Customer $customer)
+    public function status(User $customer)
     {
         $customer->status = !$customer->status;
         $customer->save();

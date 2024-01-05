@@ -12,9 +12,13 @@
             @foreach ($jenis_layanan as $item)
                 <div class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
                     <div class="icon-box mb-4">
-                        <div class="icon"><i class="{{ $item->icon_class }}"></i></div>
-                        <h4><a href="">{{ $item->nama }}</a></h4>
-                        <p>{{ $item->deskripsi }}</p>
+                        <div class="icon text-center icon-color">
+                            <i class="{{ $item->icon_class }} fa-8x mb-4"></i>
+                        </div>
+                        <h4 class="text-center"><a href="{{ route('detail-service', $item) }}">{{ $item->nama }}</a>
+                        </h4>
+                        <hr>
+                        <p class="text-justify">{{ $item->deskripsi }}</p>
                     </div>
                 </div>
             @endforeach
