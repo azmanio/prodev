@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\JenisLayanan;
 use App\Models\Layanan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class LayananController extends Controller
 {
@@ -31,13 +32,22 @@ class LayananController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            "jenis_layanan_id"=>"required|exists:jenis_layanans,id",
-            "nama"=>"required|string",
-            "deskripsi"=>"required|string"
+        $data = $request->validate([
+            "jenis_layanan_id" => "required|exists:jenis_layanans,id",
+            "nama" => "required|string",
+            "deskripsi" => "required|string",
+            "image_path" => "required|image",
+            "harga" => "required|numeric"
         ]);
 
-        Layanan::create($request->all());
+        if (@$data['image_path']) {
+            $ext = $request->file('image_path')->getClientOriginalExtension();
+            // save to storage
+            $data['image_path'] = $request->file('image_path')->storeAs('public/img-layanan', time() . Str::slug($request->nama) . '.' . $ext);
+            $data['image_path'] = str_replace('public/', '', $data['image_path']);
+        }
+
+        Layanan::create($data);
         return redirect()->route("layanan.index");
     }
 
@@ -55,7 +65,7 @@ class LayananController extends Controller
     public function edit(Layanan $layanan)
     {
         $jenis_layanan = JenisLayanan::all();
-        return view("pages.admin.layanan.update", compact("layanan","jenis_layanan"));
+        return view("pages.admin.layanan.update", compact("layanan", "jenis_layanan"));
     }
 
     /**
@@ -63,13 +73,22 @@ class LayananController extends Controller
      */
     public function update(Request $request, Layanan $layanan)
     {
-        $request->validate([
+        $data = $request->validate([
             "jenis_layanan_id" => "required|exists:jenis_layanans,id",
             "nama" => "required|string",
-            "deskripsi" => "required|string"
+            "deskripsi" => "required|string",
+            "image_path" => "required|image",
+            "harga" => "required|numeric"
         ]);
 
-        $layanan->update($request->all());
+        if (@$data['image_path']) {
+            $ext = $request->file('image_path')->getClientOriginalExtension();
+            // save to storage
+            $data['image_path'] = $request->file('image_path')->storeAs('public/img-layanan', time() . Str::slug($request->nama) . '.' . $ext);
+            $data['image_path'] = str_replace('public/', '', $data['image_path']);
+        }
+
+        $layanan->update($data);
         return redirect()->route("layanan.index");
     }
 

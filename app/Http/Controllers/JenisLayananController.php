@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\JenisLayanan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class JenisLayananController extends Controller
 {
@@ -29,12 +30,20 @@ class JenisLayananController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $data = $request->validate([
             'nama' => 'required|string',
-            'deskripsi' => 'required|string'
+            'deskripsi' => 'required|string',
+            'background' => 'required|image'
         ]);
 
-        JenisLayanan::create($request->all());
+        if (@$data['background']) {
+            $ext = $request->file('background')->getClientOriginalExtension();
+            // save to storage
+            $data['background'] = $request->file('background')->storeAs('public/bg-jenis-layanan', time() . Str::slug($request->nama) . '.' . $ext);
+            $data['background'] = str_replace('public/', '', $data['background']);
+        }
+
+        JenisLayanan::create($data);
         return redirect()->route('jenis-layanan.index');
     }
 
@@ -59,12 +68,20 @@ class JenisLayananController extends Controller
      */
     public function update(Request $request, JenisLayanan $jenis_layanan)
     {
-        $request->validate([
+        $data = $request->validate([
             'nama' => 'required|string',
-            'deskripsi' => 'required|string'
+            'deskripsi' => 'required|string',
+            'background' => 'required|image'
         ]);
 
-        $jenis_layanan->update($request->all());
+        if (@$data['background']) {
+            $ext = $request->file('background')->getClientOriginalExtension();
+            // save to storage
+            $data['background'] = $request->file('background')->storeAs('public/bg-jenis-layanan', time() . Str::slug($request->nama) . '.' . $ext);
+            $data['background'] = str_replace('public/', '', $data['background']);
+        }
+
+        $jenis_layanan->update($data);
         return redirect()->route('jenis-layanan.index');
     }
 

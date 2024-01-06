@@ -26,8 +26,16 @@
                             <i class="m-0 bi bi-chevron-down"></i>
                         </a>
                         <ul>
+                            @if (@auth()->user()->role == 'admin')
+                                <li>
+                                    <a href="{{ route('dashboard') }}">
+                                        Dashboard Admin
+                                        <i class="fas fa-tachometer-alt"></i>
+                                    </a>
+                                </li>
+                            @endif
                             <li>
-                                <a href="#">
+                                <a href="@if (@auth()->user()->role == 'admin') {{ route('dashboard') }} @endif">
                                     Profil Saya
                                     <i class="fa fa-cog"></i>
                                 </a>

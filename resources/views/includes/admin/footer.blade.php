@@ -2,7 +2,7 @@
 <footer class="sticky-footer bg-white">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
-            <span>Copyright &copy; CV. Prodev Media 2023</span>
+            &copy; Copyright {{ date('Y') }} <strong><span>CV. Prodev Media</span></strong>. All Rights Reserved
         </div>
     </div>
 </footer>

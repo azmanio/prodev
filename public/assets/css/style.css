@@ -14,6 +14,11 @@
     color: #fff;
 }
 
+.detail-services h4 {
+    color: #37517e;
+    transition: ease-in-out 0.3s;
+}
+
 .icon-color {
     color: #4682a9;
 }

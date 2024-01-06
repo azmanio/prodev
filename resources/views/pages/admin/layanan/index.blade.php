@@ -16,13 +16,15 @@
 
         <div class="card">
             <div class="card-body table-responsive">
-                <table class="table">
+                <table class="table" id="dataTable">
                     <thead>
                         <tr>
                             <th scope="col">No</th>
+                            <th scope="col">Gambar</th>
                             <th scope="col">Nama</th>
                             <th scope="col">Deskripsi</th>
                             <th scope="col">Jenis Layanan</th>
+                            <th scope="col">Harga</th>
                             <th scope="col" class="text-center">Status</th>
                             <th scope="col" class="text-center">Aksi</th>
                         </tr>
@@ -31,9 +33,18 @@
                         @foreach ($data as $index => $item)
                             <tr>
                                 <td>{{ $index + 1 }}</td>
+                                <td>
+                                    @if ($item->image_path)
+                                        <img src="/storage/{{ $item->image_path }}" alt="Foto" style="height: 50px">
+                                    @else
+                                        <img src="{{ asset('assets/img/hero-img.png') }}" alt="Foto"
+                                            style="height: 50px">
+                                    @endif
+                                </td>
                                 <td>{{ $item->nama }}</td>
                                 <td>{{ $item->deskripsi }}</td>
                                 <td>{{ $item->jenis_layanan ? $item->jenis_layanan->nama : '-' }}</td>
+                                <td>{{ $item->harga }}</td>
                                 <td class="text-center">
                                     <div class="custom-control custom-switch">
                                         <input onclick="window.location.href='{{ route('layanan.status', $item) }}'"
@@ -44,8 +55,8 @@
                                         </label>
                                     </div>
                                 </td>
-                                <td class="d-flex flex-column text-center d-md-block">
-                                    <a class="btn btn-primary mb-1 mb-md-0" href="{{ route('layanan.edit', $item) }}">
+                                <td class="d-flex flex-column text-center">
+                                    <a class="btn btn-primary mb-1" href="{{ route('layanan.edit', $item) }}">
                                         Edit
                                     </a>
                                     <a class="btn btn-danger" onclick="deleteData('{{ route('layanan.delete', $item) }}')">
