@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use App\Models\JenisLayanan;
 use App\Models\Layanan;
 use Illuminate\Http\Request;

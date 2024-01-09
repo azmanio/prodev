@@ -42,7 +42,7 @@
                             <p class="card-text">Harga: Rp{{ $item->harga }}</p>
                             <p class="card-text small mt-3">Kategori: {{ $jenis_layanan->nama }}</p>
                             <a href="{{ route('checkout', [$jenis_layanan, $item]) }}"
-                                class="btn btn-info text-white mt-4">Pesan
+                                class="btn btn-info text-white mt-4">Detail
                                 Layanan</a>
                         </div>
                     </div>

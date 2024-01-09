@@ -40,60 +40,60 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class="card shadow mt-5">
-                    <div class="card-header p-3">
-                        <h3>Detail Pesanan</h3>
-                    </div>
                     <div class="card-body">
-                        <form>
-                            <div class="form-row d-flex flex-row justify-content-center">
-                                <div class="form-group col-md-5">
-                                    <label for="nama">Nama Lengkap</label>
-                                    <input type="text" class="form-control" id="nama">
-                                </div>
-                                <div class="form-group col-md-5 ms-5">
-                                    <label for="instansi">Instansi</label>
-                                    <input type="text" class="form-control" id="instansi">
-                                </div>
-                            </div>
-                            <div class="form-row d-flex flex-row justify-content-center mt-2">
-                                <div class="form-group col-md-5">
-                                    <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="email">
-                                </div>
-                                <div class="form-group col-md-5 ms-5">
-                                    <label for="telepon">Telepon</label>
-                                    <input type="number" class="form-control" id="telepon">
-                                </div>
-                            </div>
-                            <div class="form-row d-flex flex-row justify-content-center mt-2">
-                                <div class="form-group col-md-5">
-                                    <label for="layanan">Pilihan Layanan</label>
-                                    <input type="text" class="form-control" id="layanan">
-                                </div>
-                                <div class="form-group col-md-5 ms-5">
-                                    <label for="harga">Harga</label>
-                                    <input type="number" class="form-control" id="harga">
-                                </div>
-                            </div>
-                            <div class="container mt-4">
-                                <h5>Deskripsi Layanan</h5>
-                                <p>Ini bagian deskripsi layanan</p>
-                            </div>
-                            <div class="text-center my-3">
-                                <button type="submit" class="btn btn-primary mt-4">Bayar</button>
-                            </div>
-                        </form>
+                        <div class="text-center">
+                            <h3 class="mt-2 mb-5" style="color: #37517e;">{{ $layanan->nama }}</h3>
+                            @if ($layanan->image_path)
+                                <img src="/storage/{{ $item->image_path }}" class="card-img-top w-50" alt="Layanan">
+                            @else
+                                <img src="{{ asset('assets/img/hero-img.png') }}" class="card-img-top w-50" alt="Layanan">
+                            @endif
+                        </div>
+                        <div class="container mt-4">
+                            <h5 style="color: #37517e;">Deskripsi Layanan</h5>
+                            <p>{{ $layanan->deskripsi }}</p>
+                            <h6 style="color: #37517e;">Catatan <small>(optional)</small></h6>
+                            <textarea class="form-control mb-2" aria-label="With textarea"></textarea>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="card shadow mt-5">
-                    <div class="card-header p-3">
-                        <h3>Detail Pembayaran</h3>
+                    <div class="card-header text-center pt-3 pb-2">
+                        <h3 style="color: #37517e;">Detail Pesanan</h3>
                     </div>
                     <div class="card-body">
-
+                        @auth
+                            <table class="w-100 detail-pesanan">
+                                <tr>
+                                    <th>Nama</th>
+                                    <td class="text-right">{{ auth()->user()->nama }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Instansi</th>
+                                    <td class="text-right">{{ auth()->user()->customer->instansi ?? '-' }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Email</th>
+                                    <td class="text-right">{{ auth()->user()->email }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Telepon</th>
+                                    <td class="text-right">{{ auth()->user()->customer->telepon ?? '-' }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Layanan</th>
+                                    <td class="text-right">{{ $layanan->nama }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Harga</th>
+                                    <td class="text-right">Rp{{ $layanan->harga }}</td>
+                                </tr>
+                            </table>
+                        @endauth
                     </div>
+                    <a href="" class="btn btn-primary rounded-none py-2">Bayar Sekarang</a>
                 </div>
             </div>
         </div>

@@ -2,6 +2,22 @@
 # General
 --------------------------------------------------------------*/
 
+.detail-pesanan tr th {
+    color: #37517e;
+}
+
+.detail-pesanan tr td {
+    padding-top: 8px;
+}
+
+.detail-pesanan tr th {
+    padding-top: 8px;
+}
+
+.text-right {
+    text-align: right;
+}
+
 .breadcrumb-white + .breadcrumb-white::before {
     color: #fff !important;
 }
@@ -54,6 +70,10 @@
 
 .rounded-right-only {
     border-radius: 0 6px 6px 0 !important;
+}
+
+.rounded-none {
+    border-radius: 0 0 0 0 !important;
 }
 
 body {
