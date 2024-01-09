@@ -7,7 +7,7 @@
 
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a class="nav-link scrollto" href="{{ url('/#hero') }}">Beranda</a></li>
+                <li><a class="nav-link scrollto" href="{{ url('/#home') }}">Beranda</a></li>
                 <li><a class="nav-link scrollto" href="{{ url('/#about') }}">Tentang</a></li>
                 <li><a class="nav-link scrollto" href="{{ url('/#services') }}">Layanan</a></li>
                 <li><a class="nav-link scrollto" href="{{ url('/#portfolio') }}">Portofolio</a></li>

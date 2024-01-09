@@ -18,4 +18,9 @@ class HomeController extends Controller
     {
         return view('pages.home.detail-service', compact('jenis_layanan'));
     }
+
+    public function checkout(JenisLayanan $jenis_layanan, Layanan $layanan)
+    {
+        return view('pages.home.checkout', compact('jenis_layanan', 'layanan'));
+    }
 }

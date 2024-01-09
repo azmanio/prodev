@@ -26,6 +26,9 @@ Route::get('/', [HomeController::class, 'show'])
 Route::get('/layanan/{jenis_layanan}', [HomeController::class, 'detail_service'])
     ->name('detail-service');
 
+Route::get('/layanan/{jenis_layanan}/checkout/{layanan}', [HomeController::class, 'checkout'])
+    ->name('checkout');
+
 Route::get("/login", [AuthController::class, 'login'])
     ->name('auth.login')->middleware('guest');
 Route::post("/login", [AuthController::class, 'loginStore'])
