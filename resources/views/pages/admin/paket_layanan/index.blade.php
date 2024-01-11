@@ -20,6 +20,7 @@
                     <thead>
                         <tr>
                             <th scope="col">No</th>
+                            <th scope="col">Background</th>
                             <th scope="col">Nama</th>
                             <th scope="col">Harga</th>
                             <th scope="col">Deskripsi</th>
@@ -33,6 +34,14 @@
                         @foreach ($data as $index => $item)
                             <tr>
                                 <td>{{ $index + 1 }}</td>
+                                <td>
+                                    @if ($item->background)
+                                        <img src="/storage/{{ $item->background }}" alt="Background" style="height: 50px">
+                                    @else
+                                        <img src="{{ asset('assets/img/appdevelopment.jpg') }}" alt="Background"
+                                            style="height: 50px">
+                                    @endif
+                                </td>
                                 <td>{{ $item->nama }}</td>
                                 <td>{{ $item->harga }}</td>
                                 <td>{{ $item->deskripsi }}</td>

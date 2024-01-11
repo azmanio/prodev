@@ -1,6 +1,20 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+.img-card {
+    height: 250px;
+    object-fit: cover;
+}
+
+.card-service {
+    max-height: 500px;
+    width: 100%;
+}
+
+.card-service h4 {
+    color: #37517e;
+    transition: ease-in-out 0.3s;
+}
 
 .detail-pesanan tr th {
     color: #37517e;
@@ -55,11 +69,6 @@
     color: #fff;
 }
 
-.detail-services h4 {
-    color: #37517e;
-    transition: ease-in-out 0.3s;
-}
-
 .icon-color {
     color: #4682a9;
 }
@@ -77,7 +86,7 @@
 }
 
 body {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Jost", "Open Sans", sans-serif;
     color: #444444;
 }
 
@@ -1104,13 +1113,13 @@ section {
 }
 
 /*--------------------------------------------------------------
-# Pricing
+# Package
 --------------------------------------------------------------*/
-.pricing .row {
+.package .row {
     padding-top: 40px;
 }
 
-.pricing .box {
+.package .box {
     padding: 60px 40px;
     box-shadow: 0 3px 20px -2px rgba(20, 45, 100, 0.1);
     background: #fff;
@@ -1119,14 +1128,14 @@ section {
     border-radius: 5px;
 }
 
-.pricing h3 {
+.package h3 {
     font-weight: 500;
     margin-bottom: 15px;
     font-size: 20px;
     color: #37517e;
 }
 
-.pricing h4 {
+.package h4 {
     font-size: 48px;
     color: #37517e;
     font-weight: 400;
@@ -1134,17 +1143,17 @@ section {
     margin-bottom: 25px;
 }
 
-.pricing h4 sup {
+.package h4 sup {
     font-size: 28px;
 }
 
-.pricing h4 span {
+.package h4 span {
     color: #47b2e4;
     font-size: 18px;
     display: block;
 }
 
-.pricing ul {
+.package ul {
     padding: 20px 0;
     list-style: none;
     color: #999;
@@ -1152,12 +1161,12 @@ section {
     line-height: 20px;
 }
 
-.pricing ul li {
+.package ul li {
     padding: 10px 0 10px 30px;
     position: relative;
 }
 
-.pricing ul i {
+.package ul i {
     color: #28a745;
     font-size: 24px;
     position: absolute;
@@ -1165,19 +1174,19 @@ section {
     top: 6px;
 }
 
-.pricing ul .na {
+.package ul .na {
     color: #ccc;
 }
 
-.pricing ul .na i {
+.package ul .na i {
     color: #ccc;
 }
 
-.pricing ul .na span {
+.package ul .na span {
     text-decoration: line-through;
 }
 
-.pricing .buy-btn {
+.package .buy-btn {
     display: inline-block;
     padding: 12px 35px;
     border-radius: 50px;
@@ -1190,40 +1199,40 @@ section {
     border: 1px solid #47b2e4;
 }
 
-.pricing .buy-btn:hover {
+.package .buy-btn:hover {
     background: #47b2e4;
     color: #fff;
 }
 
-.pricing .featured {
+.package .featured {
     border-top-color: #47b2e4;
 }
 
-.pricing .featured .buy-btn {
+.package .featured .buy-btn {
     background: #47b2e4;
     color: #fff;
 }
 
-.pricing .featured .buy-btn:hover {
+.package .featured .buy-btn:hover {
     background: #23a3df;
 }
 
 @media (max-width: 992px) {
-    .pricing .box {
+    .package .box {
         max-width: 60%;
         margin: 0 auto 30px auto;
     }
 }
 
 @media (max-width: 767px) {
-    .pricing .box {
+    .package .box {
         max-width: 80%;
         margin: 0 auto 30px auto;
     }
 }
 
 @media (max-width: 420px) {
-    .pricing .box {
+    .package .box {
         max-width: 100%;
         margin: 0 auto 30px auto;
     }

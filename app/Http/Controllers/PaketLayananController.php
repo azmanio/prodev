@@ -6,6 +6,7 @@ use App\Models\PaketLayanan;
 use App\Models\Layanan;
 use App\Models\PaketOption;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PaketLayananController extends Controller
 {
@@ -34,20 +35,30 @@ class PaketLayananController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama'=>'required|string',
-            'harga'=>'required|numeric',
-            'deskripsi'=>'required|string',
-            'fitur'=>'required|string',
-            'option'=>'required|array'
+            'nama' => 'required|string',
+            'harga' => 'required|numeric',
+            'deskripsi' => 'required|string',
+            'fitur' => 'required|string',
+            'option' => 'required|array',
+            'background' => 'required|image'
         ]);
 
+        if (@$request['background']) {
+            $ext = $request->file('background')->getClientOriginalExtension();
+            // save to storage
+            $request['background'] = $request->file('background')->storeAs('public/bg-paket-layanan', time() . Str::slug($request->nama) . '.' . $ext);
+            $request['background'] = str_replace('public/', '', $request['background']);
+        }
+
         $paket_layanan = PaketLayanan::create($request->except(['option']));
+
         foreach ($request->option as $option) {
             PaketOption::create([
-                'layanan_id'=>$option,
-                'paket_layanan_id'=>$paket_layanan->id
+                'layanan_id' => $option,
+                'paket_layanan_id' => $paket_layanan->id
             ]);
         }
+
         return redirect()->route('paket-layanan.index');
     }
 
@@ -75,21 +86,34 @@ class PaketLayananController extends Controller
     public function update(Request $request, PaketLayanan $paketLayanan)
     {
         $request->validate([
-            'nama'=>'required|string',
-            'harga'=>'required|numeric',
-            'deskripsi'=>'required|string',
-            'fitur'=>'required|string',
-            'option'=>'required|array'
+            'nama' => 'required|string',
+            'harga' => 'required|numeric',
+            'deskripsi' => 'required|string',
+            'fitur' => 'required|string',
+            'option' => 'required|array',
+            'background' => 'required|image'
         ]);
 
-        $paketLayanan->update($request->except(['option']));
+        $data_paket_layanan = $request->except(['option']);
+
+        if (@$data_paket_layanan['background']) {
+            $ext = $request->file('background')->getClientOriginalExtension();
+            // save to storage
+            $data_paket_layanan['background'] = $request->file('background')->storeAs('public/bg-paket-layanan', time() . Str::slug($request->nama) . '.' . $ext);
+            $data_paket_layanan['background'] = str_replace('public/', '', $data_paket_layanan['background']);
+        }
+
+        $paketLayanan->update($data_paket_layanan);
+
         PaketOption::where('paket_layanan_id', $paketLayanan->id)->delete();
+
         foreach ($request->option as $option) {
             PaketOption::create([
-                'layanan_id'=>$option,
-                'paket_layanan_id'=>$paketLayanan->id
+                'layanan_id' => $option,
+                'paket_layanan_id' => $paketLayanan->id
             ]);
         }
+
         return redirect()->route('paket-layanan.index');
     }
 

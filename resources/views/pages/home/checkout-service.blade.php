@@ -42,16 +42,17 @@
                 <div class="card shadow mt-5">
                     <div class="card-body">
                         <div class="text-center">
-                            <h3 class="mt-2 mb-5" style="color: #37517e;">{{ $layanan->nama }}</h3>
+                            <h3 class="mt-2 mb-4" style="color: #37517e;">{{ $layanan->nama }}</h3>
                             @if ($layanan->image_path)
-                                <img src="/storage/{{ $item->image_path }}" class="card-img-top w-50" alt="Layanan">
+                                <img src="/storage/{{ $layanan->image_path }}" class="card-img-top w-75" alt="Layanan">
                             @else
-                                <img src="{{ asset('assets/img/hero-img.png') }}" class="card-img-top w-50" alt="Layanan">
+                                <img src="{{ asset('assets/img/hero-img.png') }}" class="card-img-top w-100 h-75"
+                                    alt="Layanan">
                             @endif
                         </div>
-                        <div class="container mt-4">
+                        <div class="container mt-5">
                             <h5 style="color: #37517e;">Deskripsi Layanan</h5>
-                            <p>{{ $layanan->deskripsi }}</p>
+                            <p class="text-justify">{!! nl2br($layanan->deskripsi) !!}</p>
                             <h6 style="color: #37517e;">Catatan <small>(optional)</small></h6>
                             <textarea class="form-control mb-2" aria-label="With textarea"></textarea>
                         </div>
@@ -83,7 +84,7 @@
                                     <td class="text-right">{{ auth()->user()->customer->telepon ?? '-' }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Layanan</th>
+                                    <th>Pilihan Layanan</th>
                                     <td class="text-right">{{ $layanan->nama }}</td>
                                 </tr>
                                 <tr>
@@ -93,7 +94,7 @@
                             </table>
                         @endauth
                     </div>
-                    <a href="" class="btn btn-primary rounded-none py-2">Bayar Sekarang</a>
+                    <a href="" class="btn btn-primary rounded-none py-2">Pesan Sekarang</a>
                 </div>
             </div>
         </div>

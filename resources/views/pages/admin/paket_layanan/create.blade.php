@@ -12,8 +12,15 @@
 
         <div class="card">
             <div class="card-body">
-                <form action="{{ route('paket-layanan.store') }}" method="POST">
+                <form action="{{ route('paket-layanan.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    <div class="mb-3">
+                        <label for="background">Background <small>(Ditampilkan di Halaman Detail)</small></label>
+                        <div class="custom-file">
+                            <input type="file" name="background" class="custom-file-input" id="customFile">
+                            <label class="custom-file-label" for="customFile">Choose file</label>
+                        </div>
+                    </div>
                     <div class="mb-3">
                         <label for="layanan_id" class="form-label">Layanan Tersedia</label>
                         <div name="layanan_id" id="layanan_id" class="border rounded pl-4 py-2">
@@ -40,7 +47,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="deskripsi" class="form-label">Deskripsi</label>
-                        <input type="text" name="deskripsi" class="form-control" id="deskripsi" required>
+                        <textarea class="form-control" id="deskripsi" name="deskripsi" required></textarea>
                     </div>
                     <div class="mb-3">
                         <label for="fitur" class="form-label">Fitur</label>

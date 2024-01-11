@@ -14,9 +14,9 @@
 
         @include('pages.home.services')
 
-        @include('pages.home.portfolio')
+        @include('pages.home.package')
 
-        @include('pages.home.pricing')
+        @include('pages.home.portfolio')
 
         @include('pages.home.faq')
 

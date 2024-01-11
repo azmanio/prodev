@@ -29,7 +29,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="deskripsi" class="form-label">Deskripsi</label>
-                        <input type="text" name="deskripsi" class="form-control" id="deskripsi" required>
+                        <textarea class="form-control" id="deskripsi" name="deskripsi" required></textarea>
                     </div>
                     <div class="mb-3">
                         <label for="harga" class="form-label">Harga</label>

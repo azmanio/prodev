@@ -12,7 +12,8 @@ class PaketOption extends Model
 
     protected $guarded = [];
 
-    public function layanan(): BelongsTo{
+    public function layanan(): BelongsTo
+    {
         return $this->belongsTo(Layanan::class);
     }
 }

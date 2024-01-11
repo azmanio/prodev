@@ -36,7 +36,7 @@ class LayananController extends Controller
             "jenis_layanan_id" => "required|exists:jenis_layanans,id",
             "nama" => "required|string",
             "deskripsi" => "required|string",
-            "image_path" => "required|image",
+            "image_path" => "nullable|image",
             "harga" => "required|numeric"
         ]);
 
@@ -77,7 +77,7 @@ class LayananController extends Controller
             "jenis_layanan_id" => "required|exists:jenis_layanans,id",
             "nama" => "required|string",
             "deskripsi" => "required|string",
-            "image_path" => "required|image",
+            "image_path" => "nullable|image",
             "harga" => "required|numeric"
         ]);
 

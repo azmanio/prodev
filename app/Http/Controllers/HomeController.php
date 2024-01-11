@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use App\Models\JenisLayanan;
 use App\Models\Layanan;
+use App\Models\PaketLayanan;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -12,7 +13,8 @@ class HomeController extends Controller
     public function show(Request $request)
     {
         $jenis_layanan = JenisLayanan::all();
-        return view('pages.home.app', compact('jenis_layanan'));
+        $paket_layanan = PaketLayanan::with('layanan_options')->get();
+        return view('pages.home.app', compact('jenis_layanan', 'paket_layanan'));
     }
 
     public function detail_service(JenisLayanan $jenis_layanan)
@@ -20,8 +22,13 @@ class HomeController extends Controller
         return view('pages.home.detail-service', compact('jenis_layanan'));
     }
 
-    public function checkout(JenisLayanan $jenis_layanan, Layanan $layanan)
+    public function checkout_service(JenisLayanan $jenis_layanan, Layanan $layanan)
     {
-        return view('pages.home.checkout', compact('jenis_layanan', 'layanan'));
+        return view('pages.home.checkout-service', compact('jenis_layanan', 'layanan'));
+    }
+
+    public function checkout_package(PaketLayanan $paket_layanan)
+    {
+        return view('pages.home.checkout-package', compact('paket_layanan'));
     }
 }

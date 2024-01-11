@@ -42,7 +42,12 @@
                                     @endif
                                 </td>
                                 <td>{{ $item->nama }}</td>
-                                <td>{{ $item->deskripsi }}</td>
+                                <td>
+                                    <div class="text-truncate d-inline-block" title="{{ $item->deskripsi }}"
+                                        style="max-width: 200px">
+                                        {{ $item->deskripsi }}
+                                    </div>
+                                </td>
                                 <td>{{ $item->jenis_layanan ? $item->jenis_layanan->nama : '-' }}</td>
                                 <td>{{ $item->harga }}</td>
                                 <td class="text-center">

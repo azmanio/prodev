@@ -31,19 +31,24 @@
                 <div class="col-md-4">
                     <div class="card shadow p-4 mb-4">
                         @if ($item->image_path)
-                            <img src="/storage/{{ $item->image_path }}" class="card-img-top" alt="Layanan">
+                            <img src="/storage/{{ $item->image_path }}" class="card-img-top img-card" alt="Layanan">
                         @else
-                            <img src="{{ asset('assets/img/hero-img.png') }}" class="card-img-top" alt="Layanan">
+                            <img src="{{ asset('assets/img/hero-img.png') }}" class="card-img-top img-card" alt="Layanan">
                         @endif
-                        <div class="card-body text-center detail-services">
-                            <h4 class="card-title">{{ $item->nama }}</h4>
+                        <div class="card-body card-service">
+                            <h4 class="card-title text-center">{{ $item->nama }}</h4>
                             <hr>
-                            <p class="card-text">{{ $item->deskripsi }}</p>
-                            <p class="card-text">Harga: Rp{{ $item->harga }}</p>
-                            <p class="card-text small mt-3">Kategori: {{ $jenis_layanan->nama }}</p>
-                            <a href="{{ route('checkout', [$jenis_layanan, $item]) }}"
-                                class="btn btn-info text-white mt-4">Detail
-                                Layanan</a>
+                            <div class="card-text overflow-hidden text-justify" style="max-height: 190px">
+                                {!! $item->deskripsi !!}</div>
+                            <p>...</p>
+                            <p class="card-text" style="color: #37517e;">Harga: Rp{{ $item->harga }}</p>
+                            <p class="card-text small">Kategori: {{ $jenis_layanan->nama }}</p>
+                            <div class="text-center">
+                                <a href="{{ route('checkout-service', [$jenis_layanan, $item]) }}"
+                                    class="btn btn-info text-white mt-4">
+                                    Detail Layanan
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -7,10 +7,12 @@
 
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a class="nav-link scrollto" href="{{ url('/#home') }}">Beranda</a></li>
+                <li><a class="nav-link scrollto" href="{{ url('/#hero') }}">Beranda</a></li>
                 <li><a class="nav-link scrollto" href="{{ url('/#about') }}">Tentang</a></li>
                 <li><a class="nav-link scrollto" href="{{ url('/#services') }}">Layanan</a></li>
+                <li><a class="nav-link scrollto" href="{{ url('/#package') }}">Paket Layanan</a></li>
                 <li><a class="nav-link scrollto" href="{{ url('/#portfolio') }}">Portofolio</a></li>
+                <li><a class="nav-link scrollto" href="{{ url('/#faq') }}">FAQ</a></li>
                 <li><a class="nav-link scrollto" href="{{ url('/#contact') }}">Kontak</a></li>
                 @auth
                     <li class="dropdown">
@@ -33,19 +35,20 @@
                                         <i class="fas fa-tachometer-alt"></i>
                                     </a>
                                 </li>
+                            @elseif (@auth()->user()->role == 'customer')
+                                <li>
+                                    <a href="#">
+                                        Profil
+                                        <i class="fa fa-cog"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Pesanan
+                                        <i class="fas fa-shopping-bag"></i>
+                                    </a>
+                                </li>
                             @endif
-                            <li>
-                                <a href="@if (@auth()->user()->role == 'admin') {{ route('dashboard') }} @endif">
-                                    Profil Saya
-                                    <i class="fa fa-cog"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Pesanan Saya
-                                    <i class="fas fa-shopping-bag"></i>
-                                </a>
-                            </li>
                             <li>
                                 <a href="{{ route('auth.logout') }}">
                                     Keluar
@@ -55,7 +58,7 @@
                         </ul>
                     </li>
                 @else
-                    @if (Route::currentRouteName() == 'home' || Route::currentRouteName() == 'detail-service')
+                    @if (!str_contains(Route::currentRouteName(), 'auth.'))
                         <li><a class="getstarted scrollto" href="{{ route('auth.login') }}">Masuk</a></li>
                     @elseif (Route::currentRouteName() == 'auth.login')
                         <li><a class="getstarted scrollto" href="{{ route('auth.register') }}">Daftar Sekarang</a></li>

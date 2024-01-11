@@ -9,3 +9,5 @@
 <link href="/assets/admin/css/sb-admin-2.min.css" rel="stylesheet">
 
 <link href="/assets/img/logo-prodev.png" rel="icon">
+
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">

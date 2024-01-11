@@ -12,7 +12,7 @@
 
         <div class="card">
             <div class="card-body">
-                <form action="{{ route('layanan.update', $layanan) }}" method="POST">
+                <form action="{{ route('layanan.update', $layanan) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="mb-3">
@@ -28,25 +28,24 @@
                     <div class="mb-3">
                         <label for="nama" class="form-label">Nama</label>
                         <input type="text" name="nama" class="form-control" id="nama"
-                            value="{{ $layanan->nama }}" required>
+                            value="{{ old('nama') ?? $layanan->nama }}" required>
                     </div>
                     <div class="mb-3">
                         <label for="deskripsi" class="form-label">Deskripsi</label>
-                        <input type="text" name="deskripsi" class="form-control" id="deskripsi"
-                            value="{{ $layanan->deskripsi }}" required>
+                        <textarea class="form-control" id="summernote" name="deskripsi" rows="5" required>{{ old('deskripsi') ?? $layanan->deskripsi }}</textarea>
                     </div>
                     <div class="mb-3">
                         <label for="harga" class="form-label">Harga</label>
                         <input type="number" name="harga" class="form-control" id="harga"
-                            value="{{ $layanan->harga }}" required>
-                    <div class="mb-3">
-                        <label for="customFile">Gambar</label>
-                        <div class="custom-file">
-                            <input type="file" name="image_path" class="custom-file-input" id="customFile">
-                            <label class="custom-file-label" for="customFile">Choose file</label>
+                            value="{{ old('harga') ?? $layanan->harga }}" required>
+                        <div class="mb-3">
+                            <label for="customFile">Gambar</label>
+                            <div class="custom-file">
+                                <input type="file" name="image_path" class="custom-file-input" id="customFile">
+                                <label class="custom-file-label" for="customFile">Choose file</label>
+                            </div>
                         </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Ubah</button>
+                        <button type="submit" class="btn btn-primary">Ubah</button>
                 </form>
             </div>
         </div>

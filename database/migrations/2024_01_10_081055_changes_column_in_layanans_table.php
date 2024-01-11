@@ -10,13 +10,9 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('layanans', function (Blueprint $table) {
-            $table->id();
-            $table->integer('jenis_layanan_id');
-            $table->string('nama');
-            $table->string('deskripsi');
-            $table->boolean('status');
-            $table->timestamps();
+        Schema::table('layanans', function (Blueprint $table) {
+            $table->string('image_path')->nullable()->change();
+            $table->text('deskripsi')->change();
         });
     }
 
@@ -25,6 +21,9 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('layanans');
+        Schema::table('layanans', function (Blueprint $table) {
+            $table->dropColumn('image_path');
+            $table->dropColumn('deskripsi');
+        });
     }
 };

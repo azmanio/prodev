@@ -17,6 +17,10 @@
     integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous">
 </script>
 
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<!-- include summernote css/js -->
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -47,5 +51,11 @@
                 togglePasswordConfirmButton.innerHTML = '<i class="fa fa-eye"></i>'; // Ikon Show
             }
         });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('#summernote').summernote();
     });
 </script>
