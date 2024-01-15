@@ -44,7 +44,6 @@ class AuthController extends Controller
         } catch (\Throwable $th) {
             dd($th);
         }
-
     }
 
     public function login(Request $request)
@@ -71,7 +70,7 @@ class AuthController extends Controller
             $request->session()->regenerate();
 
             if (auth()->user()->role == 'admin') {
-                return redirect()->route('dashboard');
+                return redirect()->route('dashboard')->with('status', 'Selamat Datang di Dashboard Admin');
             }
             return redirect()->route('home');
 

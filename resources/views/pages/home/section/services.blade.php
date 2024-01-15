@@ -15,7 +15,7 @@
                         <div class="icon text-center icon-color">
                             <i class="{{ $item->icon_class }} fa-8x mb-4"></i>
                         </div>
-                        <h4 class="text-center"><a href="{{ route('detail-service', $item) }}">{{ $item->nama }}</a>
+                        <h4 class="text-center"><a href="{{ route('services', $item) }}">{{ $item->nama }}</a>
                         </h4>
                         <hr>
                         <p class="text-justify">{{ $item->deskripsi }}</p>

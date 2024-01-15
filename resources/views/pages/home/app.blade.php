@@ -3,24 +3,24 @@
 @section('title', 'Beranda')
 
 @section('content')
-    @include('pages.home.hero')
+    @include('pages.home.section.hero')
 
     <main id="main" class="mt-3">
-        @include('pages.home.clients')
+        @include('pages.home.section.clients')
 
-        @include('pages.home.about')
+        @include('pages.home.section.about')
 
-        @include('pages.home.why-us')
+        @include('pages.home.section.why-us')
 
-        @include('pages.home.services')
+        @include('pages.home.section.services')
 
-        @include('pages.home.package')
+        @include('pages.home.section.package')
 
-        @include('pages.home.portfolio')
+        @include('pages.home.section.portfolio')
 
-        @include('pages.home.faq')
+        @include('pages.home.section.faq')
 
-        @include('pages.home.contact')
+        @include('pages.home.section.contact')
 
     </main><!-- End #main -->
 

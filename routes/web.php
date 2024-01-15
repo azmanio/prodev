@@ -5,6 +5,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JenisLayananController;
 use App\Http\Controllers\LayananController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaketLayananController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -23,29 +24,40 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'show'])
     ->name('home');
 
-Route::get('/layanan/{jenis_layanan}', [HomeController::class, 'detail_service'])
+Route::get('/layanan/{jenis_layanan}', [HomeController::class, 'services'])
+    ->name('services');
+
+Route::get('/layanan/{jenis_layanan}/detail/{layanan}', [HomeController::class, 'detail_service'])
     ->name('detail-service');
+Route::get('/paket-layanan/{paket_layanan}/detail', [HomeController::class, 'detail_package'])
+    ->name('detail-package');
 
-Route::get('/layanan/{jenis_layanan}/checkout/{layanan}', [HomeController::class, 'checkout_service'])
-    ->name('checkout-service');
-Route::get('/paket-layanan/{paket_layanan}/checkout', [HomeController::class, 'checkout_package'])
-    ->name('checkout-package');
+Route::get('/profil', [HomeController::class, 'profile'])
+    ->name('profile');
 
-Route::get("/login", [AuthController::class, 'login'])
-    ->name('auth.login')->middleware('guest');
-Route::post("/login", [AuthController::class, 'loginStore'])
-    ->name('auth.loginStore');
+Route::post('/checkout', [OrderController::class, 'store'])
+    ->name('checkout');
+Route::get('/callback/{order}', [OrderController::class, 'callback'])
+    ->name('callback');
 
-Route::get("/register", [AuthController::class, 'register'])
-    ->name('auth.register')->middleware('guest');
-Route::post("/register", [AuthController::class, 'registerStore'])
-    ->name('auth.registerStore');
+Route::name('auth.')
+    ->group(function () {
+        Route::get("/login", [AuthController::class, 'login'])
+            ->name('login')->middleware('guest');
+        Route::post("/login", [AuthController::class, 'loginStore'])
+            ->name('loginStore');
 
-Route::get("/logout", [AuthController::class, 'logout'])
-    ->name('auth.logout');
+        Route::get("/register", [AuthController::class, 'register'])
+            ->name('register')->middleware('guest');
+        Route::post("/register", [AuthController::class, 'registerStore'])
+            ->name('registerStore');
+
+        Route::get("/logout", [AuthController::class, 'logout'])
+            ->name('logout');
+    });
 
 Route::prefix("/admin/")
-    ->middleware('auth')
+    ->middleware(['auth', 'isAdmin'])
     ->group(function () {
         Route::get('/', function () {
             return view('pages.admin.dashboard');

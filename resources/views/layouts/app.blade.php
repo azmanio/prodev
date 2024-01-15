@@ -8,7 +8,7 @@
     <meta content="" name="keywords">
 
     <title>
-        @yield('tittle', 'Beranda') - Prodev Media
+        @yield('title', 'Beranda') - Prodev Media
     </title>
 
     @include('includes.style')

@@ -17,18 +17,24 @@ class HomeController extends Controller
         return view('pages.home.app', compact('jenis_layanan', 'paket_layanan'));
     }
 
-    public function detail_service(JenisLayanan $jenis_layanan)
+    public function services(JenisLayanan $jenis_layanan)
     {
-        return view('pages.home.detail-service', compact('jenis_layanan'));
+        return view('pages.home.list-services', compact('jenis_layanan'));
     }
 
-    public function checkout_service(JenisLayanan $jenis_layanan, Layanan $layanan)
+    public function detail_service(JenisLayanan $jenis_layanan, Layanan $layanan)
     {
-        return view('pages.home.checkout-service', compact('jenis_layanan', 'layanan'));
+        return view('pages.home.detail-service', compact('jenis_layanan', 'layanan'));
     }
 
-    public function checkout_package(PaketLayanan $paket_layanan)
+    public function detail_package(PaketLayanan $paket_layanan)
     {
-        return view('pages.home.checkout-package', compact('paket_layanan'));
+        return view('pages.home.detail-package', compact('paket_layanan'));
+    }
+
+    public function profile()
+    {
+        $user = auth()->user();
+        return view('pages.home.profile', compact('user'));
     }
 }

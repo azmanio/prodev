@@ -1,5 +1,5 @@
 <header id="header" class="fixed-top
-@if (str_contains(Route::currentRouteName(), 'auth.')) header-inner-pages @endif">
+@if (str_contains(Route::currentRouteName(), 'auth.') || Route::currentRouteName() == 'profile') header-inner-pages @endif">
     <div class="container d-flex align-items-center">
         <a href="{{ route('home') }}" class="logo me-auto">
             <img src="/assets/img/logo-prodev.png" alt="Logo Prodev" class="img-fluid">
@@ -9,8 +9,10 @@
             <ul>
                 <li><a class="nav-link scrollto" href="{{ url('/#hero') }}">Beranda</a></li>
                 <li><a class="nav-link scrollto" href="{{ url('/#about') }}">Tentang</a></li>
-                <li><a class="nav-link scrollto" href="{{ url('/#services') }}">Layanan</a></li>
-                <li><a class="nav-link scrollto" href="{{ url('/#package') }}">Paket Layanan</a></li>
+                <li><a class="nav-link scrollto @if (Route::currentRouteName() == 'services' || Route::currentRouteName() == 'detail-service') active @endif"
+                        href="{{ url('/#services') }}">Layanan</a></li>
+                <li><a class="nav-link scrollto @if (Route::currentRouteName() == 'detail-package') active @endif"
+                        href="{{ url('/#package') }}">Paket Layanan</a></li>
                 <li><a class="nav-link scrollto" href="{{ url('/#portfolio') }}">Portofolio</a></li>
                 <li><a class="nav-link scrollto" href="{{ url('/#faq') }}">FAQ</a></li>
                 <li><a class="nav-link scrollto" href="{{ url('/#contact') }}">Kontak</a></li>
@@ -20,10 +22,12 @@
                             <span class="d-none d-lg-inline text-gray-600">Hi, {{ auth()->user()->nama }}! </span>
                             @if (auth()->user()->image_path)
                                 <img src="/storage/{{ auth()->user()->image_path }}" alt="Foto"
-                                    class="img-profile rounded-circle mx-1" style="width: 30px; height: 30px">
+                                    class="img-profile rounded-circle mx-1"
+                                    style="width: 30px; height: 30px; object-fit: cover">
                             @else
                                 <img src="{{ asset('assets/img/user.png') }}" alt="Foto"
-                                    class="img-profile rounded-circle">
+                                    class="img-profile rounded-circle mx-1"
+                                    style="width: 30px; height: 30px; object-fit: cover">
                             @endif
                             <i class="m-0 bi bi-chevron-down"></i>
                         </a>
@@ -37,7 +41,7 @@
                                 </li>
                             @elseif (@auth()->user()->role == 'customer')
                                 <li>
-                                    <a href="#">
+                                    <a href="{{ route('profile') }}">
                                         Profil
                                         <i class="fa fa-cog"></i>
                                     </a>

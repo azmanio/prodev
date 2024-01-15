@@ -23,7 +23,7 @@
                                     <li><i class="bx bx-check"></i>{{ $options->layanan->nama }}</li>
                                 @endforeach
                             </ul>
-                            <a href="{{ route('checkout-package', $item) }}" class="buy-btn">Detail Paket</a>
+                            <a href="{{ route('detail-package', $item) }}" class="buy-btn">Detail Paket</a>
                         </div>
                     </div>
                 </div>
