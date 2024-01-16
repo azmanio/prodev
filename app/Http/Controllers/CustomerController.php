@@ -120,7 +120,7 @@ class CustomerController extends Controller
     public function profile()
     {
         $user = auth()->user();
-        return view('pages.home.profile', compact('user'));
+        return view('auth.profile', compact('user'));
     }
 
     public function updateProfile(Request $request)

@@ -24,6 +24,7 @@
                             @endif
                             <form class="user" method="POST" action="{{ route('auth.loginStore') }}">
                                 @csrf
+                                <input type="hidden" name="url" value="{{ request()->url }}">
                                 <div class="form-group mb-3">
                                     <input type="email" class="form-control form-control-user" id="exampleInputEmail"
                                         aria-describedby="emailHelp" placeholder="Masukkan Alamat Email..." name="email"

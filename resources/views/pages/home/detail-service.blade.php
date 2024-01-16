@@ -64,8 +64,10 @@
                             </div>
                             <h5 class="mt-4" style="color: #37517e;">Deskripsi Layanan</h5>
                             <p class="text-justify">{!! nl2br($layanan->deskripsi) !!}</p>
-                            <h6 style="color: #37517e;">Catatan <small>(optional)</small></h6>
-                            <textarea class="form-control mb-2" id="summernote" aria-label="With textarea">{{ old('catatan') }}</textarea>
+                            @auth
+                                <h6 style="color: #37517e;">Catatan <small>(optional)</small></h6>
+                                <textarea class="form-control mb-2" id="summernote" aria-label="With textarea">{{ old('catatan') }}</textarea>
+                            @endauth
                         </div>
                     </div>
                 </div>
@@ -102,9 +104,13 @@
                                         <td class="text-right">Rp{{ $layanan->harga }}</td>
                                     </tr>
                                 </table>
-                            @endauth
-                        </div>
-                        <button type="submit" class="btn btn-primary rounded-none py-2">Pesan Sekarang</button>
+                            </div>
+                            <button type="submit" class="btn btn-primary rounded-none py-2">Pesan Sekarang</button>
+                        @else
+                            <a href="{{ route('auth.login', ['url' => url()->current()]) }}"
+                                class="btn btn-primary w-100 py-2">Login Untuk
+                                Pemesanan</a>
+                        @endauth
                     </div>
                 </div>
             </div>

@@ -55,7 +55,7 @@ class AuthController extends Controller
     {
         $credentials = $request->validate([
             'email' => ['required', 'email', 'exists:users,email'],
-            'password' => ['required']
+            'password' => ['required'],
         ], [
             'email.exists' => 'Email belum terdaftar.'
         ]);
@@ -72,7 +72,14 @@ class AuthController extends Controller
             if (auth()->user()->role == 'admin') {
                 return redirect()->route('dashboard')->with('status', 'Selamat Datang di Dashboard Admin');
             }
-            return redirect()->route('home');
+
+            $url = $request->url;
+
+            if ($url == '') {
+                return redirect()->route('home');
+            } else {
+                return redirect($url);
+            }
 
         }
 

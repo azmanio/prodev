@@ -50,8 +50,10 @@
                                 Fitur yang akan didapatkan dalam paket ini diantaranya:
                             </p>
                             <p>{!! nl2br($paket_layanan->fitur) !!}</p>
-                            <h6 style="color: #37517e;">Catatan <small>(optional)</small></h6>
-                            <textarea class="form-control mb-2" id="summernote" name="catatan">{{ old('catatan') }}</textarea>
+                            @auth
+                                <h6 style="color: #37517e;">Catatan <small>(optional)</small></h6>
+                                <textarea class="form-control mb-2" id="summernote" name="catatan">{{ old('catatan') }}</textarea>
+                            @endauth
                         </div>
                     </div>
                 </div>
@@ -88,9 +90,13 @@
                                         <td class="text-right">Rp{{ $paket_layanan->harga }}</td>
                                     </tr>
                                 </table>
-                            @endauth
-                        </div>
-                        <a href="" class="btn btn-primary rounded-none py-2">Pesan Sekarang</a>
+                            </div>
+                            <button type="submit" class="btn btn-primary rounded-none py-2">Pesan Sekarang</button>
+                        @else
+                            <a href="{{ route('auth.login', ['url' => url()->current()]) }}"
+                                class="btn btn-primary w-100 py-2">Login Untuk
+                                Pemesanan</a>
+                        @endauth
                     </div>
                 </div>
             </div>
