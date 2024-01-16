@@ -6,97 +6,117 @@
     <div class="container mt-5">
         <div class="row justify-content-center mt-5">
             <div class="col-lg-8 mt-5">
-                <div class="card shadow mt-2">
-                    <div class="card-body text-center">
-                        @if ($user->image_path)
-                            <img src="/storage/{{ $user->image_path }}" alt="Foto" class="rounded-circle"
-                                style="height: 150px; width: 150px; object-fit: cover">
-                        @else
-                            <img src="{{ asset('assets/img/user.png') }}" alt="Foto" class="rounded-circle"
-                                style="height: 150px; width: 150px; object-fit: cover">
-                        @endif
-                        <div class="container w-75 mt-4">
-                            <table class="text-justify w-100 detail-pesanan">
-                                <tr>
-                                    <th>Nama</th>
-                                    <td class="text-right">{{ $user->nama }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Email</th>
-                                    <td class="text-right">{{ $user->email }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Instansi</th>
-                                    <td class="text-right">{{ $user->customer->instansi ?? '-' }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Jenis Kelamin</th>
-                                    <td class="text-right">{{ ucwords($user->customer->gender ?? '-') }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Telepon</th>
-                                    <td class="text-right">{{ $user->customer->telepon ?? '-' }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Alamat</th>
-                                    <td class="text-right">{{ $user->customer->alamat ?? '-' }}</td>
-                                </tr>
-                            </table>
-                        </div>
-                        <button type="submit" class="btn btn-primary mt-5" data-toggle="modal"
-                            data-target="#editProfile">Edit Profil</button>
+                <div class="card shadow my-2">
+                    <div class="card-header text-center pt-3 pb-2" style="color: #37517e">
+                        <h4>Detail Profil</h4>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Edit Profile Modal -->
-    <div class="modal fade" id="editProfile" tabindex="-1" role="dialog" aria-labelledby="editProfileLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editProfileLabel"><i class="fas fa-user-edit"></i> Edit Profil</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="" method="POST" enctype="multipart/form-data">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    <form action="{{ route('updateProfile') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        @method('PUT')
-                        <div class="form-group">
-                            <label for="inputName">Nama</label>
-                            <input type="text" class="form-control" id="nama" name="nama"
-                                value="{{ $user->nama }}" required>
+                        <div class="card-body text-center">
+                            @if ($user->image_path)
+                                <img src="/storage/{{ $user->image_path }}" alt="Foto" class="rounded-circle"
+                                    style="height: 150px; width: 150px; object-fit: cover">
+                            @else
+                                <img src="{{ asset('assets/img/user.png') }}" alt="Foto" class="rounded-circle"
+                                    style="height: 150px; width: 150px; object-fit: cover">
+                            @endif
+                            <div class="custom-file mt-3" id="img-profile" hidden>
+                                <input type="file" name="image_path" class="custom-file-input border p-2"
+                                    id="customFile">
+                            </div>
+                            <div class="container w-75 mt-3">
+                                <table class="text-justify w-100 detail-pesanan">
+                                    <tr>
+                                        <th>Nama</th>
+                                        <td>
+                                            <input id="updateProfileNama" class="form-control" type="text"
+                                                value="{{ old('nama') ?? $user->nama }}" name="nama" readonly>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Email</th>
+                                        <td>
+                                            <input id="updateProfileEmail" class="form-control" type="text"
+                                                value="{{ old('email') ?? $user->email }}" name="email" readonly>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Instansi</th>
+                                        <td>
+                                            <input id="updateProfileInstansi" class="form-control" type="text"
+                                                value="{{ old('instansi') ?? $user->customer->instansi }}" name="instansi"
+                                                readonly>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Jenis Kelamin</th>
+                                        <td>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="gender" id="laki-laki"
+                                                    value="laki-laki" required disabled
+                                                    {{ (old('gender') ?? $user->customer->gender) == 'laki-laki' ? 'checked' : '' }}>
+                                                <label class="form-check-label" for="laki-laki">Laki-Laki</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="gender" id="perempuan"
+                                                    value="perempuan" required disabled
+                                                    {{ (old('gender') ?? $user->customer->gender) == 'perempuan' ? 'checked' : '' }}>
+                                                <label class="form-check-label" for="perempuan">Perempuan</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Telepon</th>
+                                        <td>
+                                            <input id="updateProfileTelepon" class="form-control" type="text"
+                                                value="{{ old('telepon') ?? $user->customer->telepon }}" name="telepon"
+                                                readonly>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Alamat</th>
+                                        <td>
+                                            <textarea id="updateProfileAlamat" class="form-control" type="text" name="alamat" readonly>{{ old('alamat') ?? $user->customer->alamat }}
+                                            </textarea>
+                                        </td>
+                                    </tr>
+                                    <tr id="password" hidden>
+                                        <th>
+                                            Password
+                                        </th>
+                                        <td>
+                                            <input type="password" name="password" class="form-control" id="password"
+                                                value="" placeholder="Isi Jika Ingin Ganti Password">
+                                        </td>
+                                    </tr>
+                                    <tr id="password-confirm" hidden>
+                                        <th>
+                                            Ketik Ulang Password
+                                        </th>
+                                        <td>
+                                            <input type="password" name="password_confirmation" class="form-control"
+                                                id="password-confirm" value=""
+                                                placeholder="Isi Jika Ingin Ganti Password">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <button type="button" class="btn btn-primary my-3" id="btnUpdateProfile">
+                                Edit Profil
+                            </button>
+                            <button type="submit" class="btn btn-primary my-3" id="btnSubmitProfile" hidden>
+                                Simpan Perubahan
+                            </button>
                         </div>
-                        <div class="form-group">
-                            <label for="inputUsername">Username</label>
-                            <input type="text" class="form-control" id="username" name="username"
-                                value="{{ $user->username }}" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputEmail">Email</label>
-                            <input type="email" class="form-control" id="email" name="email"
-                                value="{{ $user->email }}" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputPassword">Password</label>
-                            <input type="password" class="form-control" id="password" name="password"
-                                placeholder="Password">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputConfirmPassword">Konfirmasi Password</label>
-                            <input type="password" class="form-control" id="password-confirm" name="password_confirmation"
-                                placeholder="Konfirmasi Password">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputProfilePicture">Foto Profil</label>
-                            <input type="file" name="image_path">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                     </form>
                 </div>
             </div>

@@ -22,7 +22,7 @@
                         </label>
                         <div class="custom-file">
                             <input type="file" name="image_path" class="custom-file-input" id="customFile">
-                            <label class="custom-file-label" for="customFile">Choose file</label>
+                            <label class="custom-file-label" for="customFile"></label>
                         </div>
                     </div>
                     <div class="mb-3">
@@ -41,13 +41,13 @@
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="gender" id="laki-laki"
                                     value="laki-laki" required
-                                    {{ old('gender') ?? $customer->customer->gender == 'laki-laki' ? 'checked' : '' }}>
+                                    {{ (old('gender') ?? $customer->customer->gender) == 'laki-laki' ? 'checked' : '' }}>
                                 <label class="form-check-label" for="laki-laki">Laki-Laki</label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="gender" id="perempuan"
                                     value="perempuan" required
-                                    {{ old('gender') ?? $customer->customer->gender == 'perempuan' ? 'checked' : '' }}>
+                                    {{ (old('gender') ?? $customer->customer->gender) == 'perempuan' ? 'checked' : '' }}>
                                 <label class="form-check-label" for="perempuan">Perempuan</label>
                             </div>
                         </div>

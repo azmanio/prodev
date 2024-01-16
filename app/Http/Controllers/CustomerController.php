@@ -41,7 +41,7 @@ class CustomerController extends Controller
         if ($data['image_path']) {
             $ext = $request->file('image_path')->getClientOriginalExtension();
             // save to storage
-            $data['image_path'] = $request->file('image_path')->storeAs('public/profile', time().Str::slug($request->nama) . '.' . $ext);
+            $data['image_path'] = $request->file('image_path')->storeAs('public/profile', time() . Str::slug($request->nama) . '.' . $ext);
             $data['image_path'] = str_replace('public/', '', $data['image_path']);
         }
 
@@ -87,7 +87,7 @@ class CustomerController extends Controller
         if (@$data['image_path']) {
             $ext = $request->file('image_path')->getClientOriginalExtension();
             // save to storage
-            $data['image_path'] = $request->file('image_path')->storeAs('public/profile', time().Str::slug($request->nama) . '.' . $ext);
+            $data['image_path'] = $request->file('image_path')->storeAs('public/profile', time() . Str::slug($request->nama) . '.' . $ext);
             $data['image_path'] = str_replace('public/', '', $data['image_path']);
         }
 
@@ -115,5 +115,47 @@ class CustomerController extends Controller
         $customer->status = !$customer->status;
         $customer->save();
         return redirect()->route('customer.index');
+    }
+
+    public function profile()
+    {
+        $user = auth()->user();
+        return view('pages.home.profile', compact('user'));
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['nullable', 'string', 'confirmed'],
+            'nama' => ['required', 'string'],
+            'gender' => ['required', 'in:laki-laki,perempuan'],
+            'telepon' => ['required', 'numeric'],
+            'alamat' => ['nullable', 'string'],
+            'instansi' => ['nullable', 'string'],
+            'image_path' => ['nullable', 'image']
+        ]);
+
+        $data = $request->only('email', 'password', 'nama', 'image_path');
+
+        if (@$data['image_path']) {
+            $ext = $request->file('image_path')->getClientOriginalExtension();
+            // save to storage
+            $data['image_path'] = $request->file('image_path')->storeAs('public/profile', time() . Str::slug($request->nama) . '.' . $ext);
+            $data['image_path'] = str_replace('public/', '', $data['image_path']);
+        }
+
+        if ($data['password'] == "") {
+            unset($data['password']);
+        }
+
+        $user = auth()->user();
+        $customer = auth()->user()->customer;
+
+        $user->update($data);
+
+        $customer->update($request->only('gender', 'alamat', 'telepon', 'instansi'));
+
+        return redirect()->route('profile');
     }
 }

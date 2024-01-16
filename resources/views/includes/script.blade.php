@@ -1,3 +1,5 @@
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
 <!-- Vendor JS Files -->
 <script src="/assets/vendor/aos/aos.js"></script>
 <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -7,7 +9,6 @@
 <script src="/assets/vendor/waypoints/noframework.waypoints.js"></script>
 <script src="/assets/vendor/php-email-form/validate.js"></script>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 
 <!-- Template Main JS File -->
@@ -57,5 +58,34 @@
 <script>
     $(document).ready(function() {
         $('#summernote').summernote();
+    });
+</script>
+
+{{-- <script>
+    document.getElementById('btnUpdateProfile').onclick = function() {
+        document.getElementById('updateProfileNama').readOnly = false;
+        document.getElementById('updateProfileEmail').readOnly = false;
+        document.getElementById('updateProfileInstansi').readOnly = false;
+        document.getElementById('updateProfileTelepon').readOnly = false;
+        document.getElementById('updateProfileAlamat').readOnly = false;
+    };
+</script> --}}
+
+<script>
+    $(document).ready(function() {
+        $("#btnUpdateProfile").click(function() {
+            $("#updateProfileNama").removeAttr("readonly");
+            $("#updateProfileEmail").removeAttr("readonly");
+            $("#updateProfileInstansi").removeAttr("readonly");
+            $("#laki-laki").removeAttr("disabled");
+            $("#perempuan").removeAttr("disabled");
+            $("#updateProfileTelepon").removeAttr("readonly");
+            $("#updateProfileAlamat").removeAttr("readonly");
+            $("#btnUpdateProfile").attr('hidden', true);
+            $("#btnSubmitProfile").removeAttr('hidden');
+            $("#password").removeAttr('hidden');
+            $("#password-confirm").removeAttr('hidden');
+            $("#img-profile").removeAttr('hidden');
+        });
     });
 </script>

@@ -32,8 +32,10 @@ Route::get('/layanan/{jenis_layanan}/detail/{layanan}', [HomeController::class, 
 Route::get('/paket-layanan/{paket_layanan}/detail', [HomeController::class, 'detail_package'])
     ->name('detail-package');
 
-Route::get('/profil', [HomeController::class, 'profile'])
+Route::get('/profil', [CustomerController::class, 'profile'])
     ->name('profile');
+Route::post('/profil', [CustomerController::class, 'updateProfile'])
+    ->name('updateProfile');
 
 Route::post('/checkout', [OrderController::class, 'store'])
     ->name('checkout');

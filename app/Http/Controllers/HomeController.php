@@ -31,10 +31,4 @@ class HomeController extends Controller
     {
         return view('pages.home.detail-package', compact('paket_layanan'));
     }
-
-    public function profile()
-    {
-        $user = auth()->user();
-        return view('pages.home.profile', compact('user'));
-    }
 }
