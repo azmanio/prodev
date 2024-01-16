@@ -41,6 +41,8 @@ Route::post('/checkout', [OrderController::class, 'store'])
     ->name('checkout');
 Route::get('/callback/{order}', [OrderController::class, 'callback'])
     ->name('callback');
+Route::get('/success', [OrderController::class, 'success'])
+    ->name('success');
 
 Route::name('auth.')
     ->group(function () {

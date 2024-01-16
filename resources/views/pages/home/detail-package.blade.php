@@ -4,6 +4,17 @@
 
 @section('content')
     <form action="{{ route('checkout') }}" method="POST">
+        @csrf
+        <input type="hidden" name="paket_layanan_id" value="{{ $paket_layanan->id }}">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="hero-service">
             <img src="/storage/{{ $paket_layanan->background }}" alt="Background">
             <div class="bg-opacity"></div>
