@@ -12,6 +12,15 @@ use Illuminate\Support\Str;
 class OrderController extends Controller
 {
     /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        $data = Order::all();
+        return view("pages.admin.order.index", compact("data"));
+    }
+
+    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
@@ -72,6 +81,33 @@ class OrderController extends Controller
         return redirect($response->invoice_url);
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Order $order)
+    {
+        $layanan = Layanan::all();
+        $paket_layanan = PaketLayanan::all();
+        return view('pages.admin.order.update', compact('order', 'layanan', 'paket_layanan'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Order $order)
+    {
+        $data = $request->validate([
+            'layanan_id' => ['nullable', 'exists:layanans,id'],
+            'paket_layanan_id' => ['nullable', 'exists:paket_layanans,id'],
+            'catatan' => ['nullable', 'text'],
+            'project_status' => ['in:belum dimulai,proses,selesai']
+        ]);
+
+        $order->update($data);
+
+        return redirect()->route('order.index');
+    }
+
     public function callback(Order $order)
     {
         $secret_key = 'Basic ' . config('xendit.key_auth');
@@ -98,5 +134,14 @@ class OrderController extends Controller
     public function success()
     {
         return view('pages.home.success');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Order $order)
+    {
+        $order->delete();
+        return redirect()->route('order.index');
     }
 }

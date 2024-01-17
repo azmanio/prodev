@@ -38,14 +38,15 @@
                         <label for="harga" class="form-label">Harga</label>
                         <input type="number" name="harga" class="form-control" id="harga"
                             value="{{ old('harga') ?? $layanan->harga }}" required>
-                        <div class="mb-3">
-                            <label for="customFile">Gambar</label>
-                            <div class="custom-file">
-                                <input type="file" name="image_path" class="custom-file-input" id="customFile">
-                                <label class="custom-file-label" for="customFile">Choose file</label>
-                            </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="customFile">Gambar</label>
+                        <div class="custom-file">
+                            <input type="file" name="image_path" class="custom-file-input" id="customFile">
+                            <label class="custom-file-label" for="customFile">Choose file</label>
                         </div>
-                        <button type="submit" class="btn btn-primary">Ubah</button>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Ubah</button>
                 </form>
             </div>
         </div>

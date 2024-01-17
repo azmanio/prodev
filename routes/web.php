@@ -99,4 +99,8 @@ Route::prefix("/admin/")
             ->name('paket-layanan.delete');
         Route::get('paket-layanan/{paket_layanan}/status', [PaketLayananController::class, 'status'])
             ->name('paket-layanan.status');
+
+        Route::resource('order', OrderController::class);
+        Route::get('order/{order}/delete', [OrderController::class, 'destroy'])
+            ->name('order.delete');
     });
