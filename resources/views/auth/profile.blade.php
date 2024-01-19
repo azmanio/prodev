@@ -2,6 +2,27 @@
 
 @section('title', 'Profil')
 
+@push('script')
+    <script>
+        $(document).ready(function() {
+            $("#btnUpdateProfile").click(function() {
+                $("#updateProfileNama").removeAttr("readonly");
+                $("#updateProfileEmail").removeAttr("readonly");
+                $("#updateProfileInstansi").removeAttr("readonly");
+                $("#laki-laki").removeAttr("disabled");
+                $("#perempuan").removeAttr("disabled");
+                $("#updateProfileTelepon").removeAttr("readonly");
+                $("#updateProfileAlamat").removeAttr("readonly");
+                $("#btnUpdateProfile").attr('hidden', true);
+                $("#btnSubmitProfile").removeAttr('hidden');
+                $("#password").removeAttr('hidden');
+                $("#password-confirm").removeAttr('hidden');
+                $("#img-profile").removeAttr('hidden');
+            });
+        });
+    </script>
+@endpush
+
 @section('content')
     <div class="container mt-5">
         <div class="row justify-content-center mt-5">

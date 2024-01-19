@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JenisLayanan;
 use App\Models\Layanan;
 use App\Models\Order;
 use App\Models\PaketLayanan;
@@ -99,7 +100,7 @@ class OrderController extends Controller
         $data = $request->validate([
             'layanan_id' => ['nullable', 'exists:layanans,id'],
             'paket_layanan_id' => ['nullable', 'exists:paket_layanans,id'],
-            'catatan' => ['nullable', 'text'],
+            'catatan' => ['nullable', 'string'],
             'project_status' => ['in:belum dimulai,proses,selesai']
         ]);
 
@@ -128,12 +129,20 @@ class OrderController extends Controller
             ]);
         }
 
-        return redirect()->route('success');
+        return redirect()->route('success', $order);
     }
 
-    public function success()
+    public function success(Order $order)
     {
-        return view('pages.home.success');
+        return view('pages.home.success', compact('order'));
+    }
+
+    public function cancel(Order $order)
+    {
+        $order->update([
+            'payment_status' => 'gagal',
+        ]);
+        return redirect()->route('history-order');
     }
 
     /**
@@ -144,4 +153,49 @@ class OrderController extends Controller
         $order->delete();
         return redirect()->route('order.index');
     }
+
+    public function history_order(Request $request)
+    {
+        $orders = Order::where('user_id', auth()->user()->id)->orderBy('id', 'desc');
+        if ($request->project_status) {
+            $orders = $orders->where('project_status', $request->project_status);
+        }
+        if ($request->payment_status) {
+            $orders = $orders->where('payment_status', $request->payment_status);
+        }
+        if ($request->layanan) {
+            $orders = $orders->where('layanan_id', $request->layanan);
+        }
+        if ($request->paket_layanan) {
+            $orders = $orders->where('paket_layanan_id', $request->paket_layanan);
+        }
+        $orders = $orders->get();
+        $layanan = Layanan::all();
+        $paket_layanan = PaketLayanan::all();
+        return view('pages.home.history-order', compact('orders', 'layanan', 'paket_layanan'));
+    }
+
+    public function payment(Order $order)
+    {
+        $secret_key = 'Basic ' . config('xendit.key_auth');
+
+        $data = Http::withHeaders([
+            'Authorization' => $secret_key
+        ])->post('https://api.xendit.co/v2/invoices', [
+                    'external_id' => $order->no_invoice,
+                    'amount' => $order->harga,
+                    'success_redirect_url' => route('callback', $order),
+                    'failure_redirect_url' => route('callback', $order)
+                ]);
+
+        $response = $data->object();
+
+        $order->update([
+            'payment_status_xendit' => $response->status,
+            'payment_link' => $response->invoice_url
+        ]);
+
+        return redirect($response->invoice_url);
+    }
+
 }

@@ -40,7 +40,7 @@
                                 <td>
                                     <div class="text-truncate d-inline-block" title="{{ $item->catatan }}"
                                         style="max-width: 200px">
-                                        {{ $item->catatan ?? '-' }}
+                                        {!! $item->catatan ?? '-' !!}
                                     </div>
                                 </td>
                                 <td>{{ $item->payment_status }}</td>

@@ -44,8 +44,8 @@
                                 <td>{{ $item->nama }}</td>
                                 <td>
                                     <div class="text-truncate d-inline-block" title="{{ $item->deskripsi }}"
-                                        style="max-width: 200px">
-                                        {{ $item->deskripsi }}
+                                        style="max-width: 200px; max-height: 100px">
+                                        {!! $item->deskripsi !!}
                                     </div>
                                 </td>
                                 <td>{{ $item->jenis_layanan ? $item->jenis_layanan->nama : '-' }}</td>

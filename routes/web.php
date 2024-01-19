@@ -39,10 +39,17 @@ Route::post('/profil', [CustomerController::class, 'updateProfile'])
 
 Route::post('/checkout', [OrderController::class, 'store'])
     ->name('checkout');
+Route::get('/checkout/{order}', [OrderController::class, 'payment'])
+    ->name('checkout.payment');
 Route::get('/callback/{order}', [OrderController::class, 'callback'])
     ->name('callback');
-Route::get('/success', [OrderController::class, 'success'])
+Route::get('/success/{order}', [OrderController::class, 'success'])
     ->name('success');
+Route::get('/cancel/{order}', [OrderController::class, 'cancel'])
+    ->name('cancel');
+
+Route::get('/riwayat-pesanan', [OrderController::class, 'history_order'])
+    ->name('history-order');
 
 Route::name('auth.')
     ->group(function () {

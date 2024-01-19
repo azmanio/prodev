@@ -1,7 +1,8 @@
 <header id="header" class="fixed-top
 @if (str_contains(Route::currentRouteName(), 'auth.') ||
         Route::currentRouteName() == 'profile' ||
-        Route::currentRouteName() == 'success') header-inner-pages @endif">
+        Route::currentRouteName() == 'success' ||
+        Route::currentRouteName() == 'history-order') header-inner-pages @endif">
     <div class="container d-flex align-items-center">
         <a href="{{ route('home') }}" class="logo me-auto">
             <img src="/assets/img/logo-prodev.png" alt="Logo Prodev" class="img-fluid">
@@ -49,7 +50,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="{{ route('history-order') }}">
                                         Pesanan
                                         <i class="fas fa-shopping-bag"></i>
                                     </a>
