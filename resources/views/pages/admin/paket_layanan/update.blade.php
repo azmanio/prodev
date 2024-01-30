@@ -54,12 +54,11 @@
                     </div>
                     <div class="mb-3">
                         <label for="deskripsi" class="form-label">Deskripsi</label>
-                        <textarea class="form-control" id="deskripsi" name="deskripsi" required>{{ $paketLayanan->deskripsi }}</textarea>
+                        <textarea class="form-control" id="summernote" name="deskripsi" required>{{ old('deskripsi') ?? $paketLayanan->deskripsi }}</textarea>
                     </div>
                     <div class="mb-3">
                         <label for="fitur" class="form-label">Fitur</label>
-                        <input type="text" name="fitur" class="form-control" id="fitur"
-                            value="{{ $paketLayanan->fitur }}" required>
+                        <textarea class="form-control" name="fitur" required>{{ old('fitur') ?? $paketLayanan->fitur }}</textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Ubah</button>
                 </form>

@@ -70,7 +70,7 @@ class AuthController extends Controller
             $request->session()->regenerate();
 
             if (auth()->user()->role == 'admin') {
-                return redirect()->route('dashboard')->with('status', 'Selamat Datang di Dashboard Admin');
+                return redirect()->route('dashboard')->with('message', 'Selamat Datang di Dashboard Admin');
             }
 
             $url = $request->url;

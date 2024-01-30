@@ -39,19 +39,21 @@
                     </div>
                     <div class="mb-3">
                         <label for="nama" class="form-label">Nama</label>
-                        <input type="text" name="nama" class="form-control" id="nama" required>
+                        <input type="text" name="nama" class="form-control" id="nama" value="{{ old('nama') }}"
+                            required>
                     </div>
                     <div class="mb-3">
                         <label for="harga" class="form-label">Harga</label>
-                        <input type="number" name="harga" class="form-control" id="harga" required>
+                        <input type="number" name="harga" class="form-control" id="harga" value="{{ old('harga') }}"
+                            required>
                     </div>
                     <div class="mb-3">
                         <label for="deskripsi" class="form-label">Deskripsi</label>
-                        <textarea class="form-control" id="deskripsi" name="deskripsi" required></textarea>
+                        <textarea class="form-control" id="summernote" name="deskripsi" required>{{ old('deskripsi') }}</textarea>
                     </div>
                     <div class="mb-3">
                         <label for="fitur" class="form-label">Fitur</label>
-                        <input type="text" name="fitur" class="form-control" id="fitur" required>
+                        <textarea class="form-control" name="fitur" required>{{ old('fitur') }}</textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </form>

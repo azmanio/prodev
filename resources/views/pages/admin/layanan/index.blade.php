@@ -2,6 +2,26 @@
 
 @section('title', 'Layanan')
 
+@push('script')
+    <script>
+        function delete_confirm(url) {
+            Swal.fire({
+                title: "Apa Kamu Yakin?",
+                text: "Data yang dihapus tidak dapat dikembalikan lagi",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = url
+                }
+            });
+        }
+    </script>
+@endpush
+
 @section('content')
     <div class="container-fluid">
 
@@ -49,7 +69,7 @@
                                     </div>
                                 </td>
                                 <td>{{ $item->jenis_layanan ? $item->jenis_layanan->nama : '-' }}</td>
-                                <td>{{ $item->harga }}</td>
+                                <td>Rp{{ number_format($item->harga, 0, ',', '.') }}</td>
                                 <td class="text-center">
                                     <div class="custom-control custom-switch">
                                         <input onclick="window.location.href='{{ route('layanan.status', $item) }}'"
@@ -64,7 +84,8 @@
                                     <a class="btn btn-primary mb-1" href="{{ route('layanan.edit', $item) }}">
                                         Edit
                                     </a>
-                                    <a class="btn btn-danger" onclick="deleteData('{{ route('layanan.delete', $item) }}')">
+                                    <a class="btn btn-danger"
+                                        onclick="delete_confirm('{{ route('layanan.delete', $item) }}')">
                                         Hapus
                                     </a>
                                 </td>

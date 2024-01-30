@@ -34,7 +34,7 @@ class PaketLayananController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $data = $request->validate([
             'nama' => 'required|string',
             'harga' => 'required|numeric',
             'deskripsi' => 'required|string',
@@ -43,16 +43,16 @@ class PaketLayananController extends Controller
             'background' => 'required|image'
         ]);
 
-        if (@$request['background']) {
+        if (@$data['background']) {
             $ext = $request->file('background')->getClientOriginalExtension();
             // save to storage
-            $request['background'] = $request->file('background')->storeAs('public/bg-paket-layanan', time() . Str::slug($request->nama) . '.' . $ext);
-            $request['background'] = str_replace('public/', '', $request['background']);
+            $data['background'] = $request->file('background')->storeAs('public/bg-paket-layanan', time() . Str::slug($request->nama) . '.' . $ext);
+            $data['background'] = str_replace('public/', '', $data['background']);
         }
 
-        $paket_layanan = PaketLayanan::create($request->except(['option']));
+        $paket_layanan = PaketLayanan::create(collect($data)->except(['option'])->toArray());
 
-        foreach ($request->option as $option) {
+        foreach ($data['option'] as $option) {
             PaketOption::create([
                 'layanan_id' => $option,
                 'paket_layanan_id' => $paket_layanan->id
@@ -91,7 +91,7 @@ class PaketLayananController extends Controller
             'deskripsi' => 'required|string',
             'fitur' => 'required|string',
             'option' => 'required|array',
-            'background' => 'required|image'
+            'background' => 'nullable|image'
         ]);
 
         $data_paket_layanan = $request->except(['option']);

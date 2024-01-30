@@ -23,15 +23,17 @@
                     </div>
                     <div class="mb-3">
                         <label for="icon_class" class="form-label">Icon</label>
-                        <input type="text" name="icon_class" class="form-control" id="icon_class" required>
+                        <input type="text" name="icon_class" class="form-control" id="icon_class"
+                            value="{{ old('icon_class') }}" required>
                     </div>
                     <div class="mb-3">
                         <label for="nama" class="form-label">Nama</label>
-                        <input type="text" name="nama" class="form-control" id="nama" required>
+                        <input type="text" name="nama" class="form-control" id="nama" value="{{ old('nama') }}"
+                            required>
                     </div>
                     <div class="mb-3">
                         <label for="deskripsi" class="form-label">Deskripsi</label>
-                        <input type="text" name="deskripsi" class="form-control" id="deskripsi" required>
+                        <textarea class="form-control" id="summernote" name="deskripsi" required>{{ old('deskripsi') }}</textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </form>

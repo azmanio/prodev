@@ -42,13 +42,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group mb-4">
+                                {{-- <div class="form-group mb-4">
                                     <div class="custom-control custom-checkbox small">
                                         <input type="checkbox" class="custom-control-input" id="customCheck">
                                         <label class="custom-control-label" for="customCheck">Remember Me</label>
                                     </div>
-                                </div>
-                                <div class="form-group text-center">
+                                </div> --}}
+                                <div class="form-group mb-4 text-center">
                                     <button class="btn btn-primary btn-user btn-block mb-2" type="submit">
                                         Login
                                     </button>
@@ -56,7 +56,7 @@
                             </form>
                             <hr>
                             <div class="text-center small">
-                                <a href="#">Forgot Password?</a><br><br>
+                                {{-- <a href="#">Forgot Password?</a><br><br> --}}
                                 <p>Belum memiliki akun? <a href="{{ route('auth.register') }}">Daftar Sekarang!</a></p>
                             </div>
                         </div>

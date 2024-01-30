@@ -27,7 +27,7 @@
     <div class="container mt-5">
         <div class="row">
             <h2 class="text-center mb-5" style="color: #37517e;">Layanan Tersedia</h2>
-            @foreach ($jenis_layanan->layanans as $item)
+            @foreach ($jenis_layanan->layanans->where('status', true) as $item)
                 <div class="col-md-4">
                     <div class="card shadow p-4 mb-4">
                         @if ($item->image_path)
@@ -41,7 +41,8 @@
                             <div class="card-text overflow-hidden text-justify" style="max-height: 190px">
                                 {!! $item->deskripsi !!}</div>
                             <p>...</p>
-                            <p class="card-text" style="color: #37517e;">Harga: Rp{{ $item->harga }}</p>
+                            <p class="card-text" style="color: #37517e;">Harga:
+                                Rp{{ number_format($item->harga, 0, ',', '.') }}</p>
                             <p class="card-text small">Kategori: {{ $jenis_layanan->nama }}</p>
                             <div class="text-center">
                                 <a href="{{ route('detail-service', [$jenis_layanan, $item]) }}"

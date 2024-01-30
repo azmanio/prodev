@@ -1,5 +1,5 @@
 <!-- ======= Why Us Section ======= -->
-<section id="why-us" class="why-us section-bg">
+<section id="why-us" class="why-us">
     <div class="container-fluid" data-aos="fade-up">
 
         <div class="row">

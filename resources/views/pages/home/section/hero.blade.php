@@ -13,7 +13,7 @@
                     </small>
                 </h2>
                 <div class="d-flex justify-content-center mt-0 mb-5 pt-0 pb-5">
-                    <a href="#about" class="btn-get-started scrollto">
+                    <a href="#clients" class="btn-get-started scrollto">
                         Jelajahi
                     </a>
                 </div>

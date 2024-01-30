@@ -38,8 +38,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="deskripsi" class="form-label">Deskripsi</label>
-                        <input type="text" name="deskripsi" class="form-control" id="deskripsi"
-                            value="{{ $jenis_layanan->deskripsi }}" required>
+                        <textarea class="form-control" id="summernote" name="deskripsi" required>{{ old('deskripsi') ?? $jenis_layanan->deskripsi }}</textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Ubah</button>
                 </form>

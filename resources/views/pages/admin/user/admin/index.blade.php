@@ -2,6 +2,26 @@
 
 @section('title', 'List Admin')
 
+@push('script')
+    <script>
+        function delete_confirm(url) {
+            Swal.fire({
+                title: "Apa Kamu Yakin?",
+                text: "Data yang dihapus tidak dapat dikembalikan lagi",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = url
+                }
+            });
+        }
+    </script>
+@endpush
+
 @section('content')
     <div class="container-fluid">
 
@@ -56,10 +76,10 @@
                                         <a class="btn btn-primary mb-1 mb-md-0" href="{{ route('admin.edit', $item) }}">
                                             Edit
                                         </a>
-                                        <a class="btn btn-danger"
-                                            onclick="deleteData('{{ route('admin.delete', $item) }}')">
+                                        <button class="btn btn-danger"
+                                            onclick="delete_confirm('{{ route('admin.delete', $item) }}')">
                                             Hapus
-                                        </a>
+                                        </button>
                                     </td>
                                 </tr>
                             @endforeach

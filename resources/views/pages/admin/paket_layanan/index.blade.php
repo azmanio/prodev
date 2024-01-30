@@ -2,6 +2,26 @@
 
 @section('title', 'Paket Layanan')
 
+@push('script')
+    <script>
+        function delete_confirm(url) {
+            Swal.fire({
+                title: "Apa Kamu Yakin?",
+                text: "Data yang dihapus tidak dapat dikembalikan lagi",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = url
+                }
+            });
+        }
+    </script>
+@endpush
+
 @section('content')
     <div class="container-fluid">
 
@@ -43,13 +63,27 @@
                                     @endif
                                 </td>
                                 <td>{{ $item->nama }}</td>
-                                <td>{{ $item->harga }}</td>
-                                <td>{{ $item->deskripsi }}</td>
-                                <td>{{ $item->layanan_options->map(function ($layanan) {
-                                        return $layanan->layanan->nama;
-                                    })->implode(', ') }}
+                                <td>Rp{{ number_format($item->harga, 0, ',', '.') }}</td>
+                                <td>
+                                    <div class="text-truncate d-inline-block" title="{{ $item->deskripsi }}"
+                                        style="max-width: 200px; max-height: 100px">
+                                        {!! $item->deskripsi !!}
+                                    </div>
                                 </td>
-                                <td>{{ $item->fitur }}</td>
+                                <td>
+                                    <div style="width: 150px">
+                                        {{ $item->layanan_options->map(function ($layanan) {
+                                                return $layanan->layanan->nama;
+                                            })->implode(', ') }}
+                                    </div>
+
+                                </td>
+                                <td>
+                                    <div class="text-truncate d-inline-block" title="{{ $item->fitur }}"
+                                        style="max-width: 150px; max-height: 100px">
+                                        {!! $item->fitur !!}
+                                    </div>
+                                </td>
                                 <td class="text-center">
                                     <div class="custom-control custom-switch">
                                         <input onclick="window.location.href='{{ route('paket-layanan.status', $item) }}'"
@@ -66,7 +100,7 @@
                                             Edit
                                         </a>
                                         <a class="btn btn-danger"
-                                            onclick="deleteData('{{ route('paket-layanan.delete', $item) }}')">
+                                            onclick="delete_confirm('{{ route('paket-layanan.delete', $item) }}')">
                                             Hapus
                                         </a>
                                     </div>

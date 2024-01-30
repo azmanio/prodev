@@ -42,28 +42,34 @@
             </div>
         </div>
     </li>
-    <li class="nav-item @if (Route::currentRouteName() == 'jenis-layanan.index') active @endif">
+    <li class="nav-item @if (Route::currentRouteName() == 'jenis-layanan.index' ||
+            Route::currentRouteName() == 'jenis-layanan.edit' ||
+            Route::currentRouteName() == 'jenis-layanan.create') active @endif">
         <a class="nav-link" href="{{ route('jenis-layanan.index') }}">
             <i class="fas fa-list-ul"></i>
             <span>Jenis Layanan</span>
         </a>
     </li>
-    <li class="nav-item @if (Route::currentRouteName() == 'layanan.index') active @endif">
+    <li class="nav-item @if (Route::currentRouteName() == 'layanan.index' ||
+            Route::currentRouteName() == 'layanan.edit' ||
+            Route::currentRouteName() == 'layanan.create') active @endif">
         <a class="nav-link" href="{{ route('layanan.index') }}">
             <i class="fas fa-tag"></i>
             <span>Layanan</span>
         </a>
     </li>
-    <li class="nav-item @if (Route::currentRouteName() == 'paket-layanan.index') active @endif">
+    <li class="nav-item @if (Route::currentRouteName() == 'paket-layanan.index' ||
+            Route::currentRouteName() == 'paket-layanan.edit' ||
+            Route::currentRouteName() == 'paket-layanan.create') active @endif">
         <a class="nav-link" href="{{ route('paket-layanan.index') }}">
             <i class="fas fa-tags"></i>
             <span>Paket Layanan</span>
         </a>
     </li>
-    <li class="nav-item @if (Route::currentRouteName() == 'order.index') active @endif">
+    <li class="nav-item @if (Route::currentRouteName() == 'order.index' || Route::currentRouteName() == 'order.edit') active @endif">
         <a class="nav-link" href="{{ route('order.index') }}">
             <i class="fas fa-money-check-alt"></i>
-            <span>Order</span>
+            <span>Pesanan</span>
         </a>
     </li>
 

@@ -24,7 +24,7 @@
                             </a>
                         </li>
                         <li class="breadcrumb-item text-white breadcrumb-white">
-                            <a href="{{ route('detail-package', $jenis_layanan) }}" class="text-white">
+                            <a href="{{ route('services', $jenis_layanan) }}" class="text-white">
                                 <u>{{ $jenis_layanan->nama }}</u>
                             </a>
                         </li>
@@ -102,7 +102,7 @@
                                         </tr>
                                         <tr>
                                             <th>Harga</th>
-                                            <td class="text-right">Rp{{ $layanan->harga }}</td>
+                                            <td class="text-right">Rp{{ number_format($layanan->harga, 0, ',', '.') }}</td>
                                         </tr>
                                     </table>
                                 </div>

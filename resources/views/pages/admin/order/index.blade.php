@@ -2,12 +2,32 @@
 
 @section('title', 'Order')
 
+@push('script')
+    <script>
+        function delete_confirm(url) {
+            Swal.fire({
+                title: "Apa Kamu Yakin?",
+                text: "Data yang dihapus tidak dapat dikembalikan lagi",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = url
+                }
+            });
+        }
+    </script>
+@endpush
+
 @section('content')
     <div class="container-fluid">
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">List Orderan</h1>
+            <h1 class="h3 mb-0 text-gray-800">List Pesanan</h1>
         </div>
 
         <div class="card">
@@ -50,7 +70,8 @@
                                     <a class="btn btn-primary mb-1" href="{{ route('order.edit', $item) }}">
                                         Edit
                                     </a>
-                                    <a class="btn btn-danger" onclick="deleteData('{{ route('order.delete', $item) }}')">
+                                    <a class="btn btn-danger"
+                                        onclick="delete_confirm('{{ route('order.delete', $item) }}')">
                                         Hapus
                                     </a>
                                 </td>

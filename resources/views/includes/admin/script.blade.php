@@ -28,6 +28,8 @@
 <!-- include summernote css/js -->
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
     $(document).ready(function() {
         bsCustomFileInput.init()
@@ -35,15 +37,9 @@
 </script>
 
 <script>
-    function deleteData(url) {
-        if (confirm("Yakin?")) {
-            window.location.href = url;
-        }
-    }
-</script>
-
-<script>
     $(document).ready(function() {
         $('#summernote').summernote();
     });
 </script>
+
+@stack('script')

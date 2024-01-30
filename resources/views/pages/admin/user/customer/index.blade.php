@@ -2,6 +2,26 @@
 
 @section('title', 'List Customer')
 
+@push('script')
+    <script>
+        function delete_confirm(url) {
+            Swal.fire({
+                title: "Apa Kamu Yakin?",
+                text: "Data yang dihapus tidak dapat dikembalikan lagi",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = url
+                }
+            });
+        }
+    </script>
+@endpush
+
 @section('content')
     <div class="container-fluid">
 
@@ -61,7 +81,7 @@
                                             Edit
                                         </a>
                                         <a class="btn btn-danger"
-                                            onclick="deleteData('{{ route('customer.delete', $item) }}')">
+                                            onclick="delete_confirm('{{ route('customer.delete', $item) }}')">
                                             Hapus
                                         </a>
                                     </td>

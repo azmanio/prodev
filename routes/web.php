@@ -72,8 +72,7 @@ Route::prefix("/admin/")
     ->group(function () {
         Route::get('/', function () {
             return view('pages.admin.dashboard');
-        })
-            ->name('dashboard');
+        })->name('dashboard');
 
         Route::resource('user/admin', UserController::class, [
             'parameters' => [
