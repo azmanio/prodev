@@ -39,15 +39,21 @@
             </div>
 
             <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-                <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                <form action="https://api.emailjs.com/api/v1.0/email/send-form" method="post" role="form"
+                    class="php-email-form" id="sendEmail">
+                    <input type="hidden" name="template_id" value="{{ env('EMAILJS_TEMPLATE_ID') }}">
+                    <input type="hidden" name="user_id" value="{{ env('EMAILJS_USER_ID') }}">
+                    <input type="hidden" name="service_id" value="{{ env('EMAILJS_SERVICE_ID') }}">
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="name">Nama Lengkap</label>
-                            <input type="text" name="name" class="form-control" id="name" required>
+                            <input type="text" name="from_name" class="form-control" id="name"
+                                value="{{ auth()->user()->nama ?? '' }}" required>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="name">Email Anda</label>
-                            <input type="email" class="form-control" name="email" id="email" required>
+                            <label for="name">Email</label>
+                            <input type="email" class="form-control" name="from_email" id="email"
+                                value="{{ auth()->user()->email ?? '' }}" required>
                         </div>
                     </div>
                     <div class="form-group">
